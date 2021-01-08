@@ -1,0 +1,33 @@
+body{
+  background: #5d3535;
+  color: white;
+  font-family: Montserrat, Raleway, sans-serif, 'Amatic SC', cursive;
+}
+
+*{margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+  //color: var(--text-color1);
+  //font-family: Montserrat,Raleway, sans-serif;
+  //font-size: 16px;
+  //min-height: 54px;
+  background: none;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
+@keyframes button-animation {
+  0%{
+    left: 0;
+    top: 0;
+  }
+  100%{
+    left: 3px;
+    top: 3px;
+  }
+}

@@ -1,0 +1,110 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.header__background{
+  width: 100%;
+  object-fit: cover;
+}
+
+.header-wrap{
+  position: absolute;
+  width: 100%;
+  max-width: 1440px;
+  padding: 30px;
+  box-sizing: border-box;
+  background: var(--background-color1);
+  box-shadow: 0 15px 15px var(--background-color1);
+  font-family: var(--font-family1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header__owner{
+  margin-right: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__name-owner{
+  font-size: var(--font-size1);
+}
+
+.header__btn-information-owner{
+  position: relative;
+  width: 4vh;
+  height: 4vh;
+  border-right: 3px solid var(--background-color2);
+  border-bottom: 3px solid var(--background-color2);
+  transform-origin: left top;
+  transform: skew(10deg, 10deg);
+  animation-name: button-animation;
+  animation-duration: 0.8s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.header__btn-information-owner:after{
+  position: absolute;
+  content: "";
+  width: 5vh;
+  height: 5vh;
+  border-right: 3px solid var(--background-color2);
+  border-bottom: 3px solid var(--background-color2);
+  }
+
+.header__information-owner{
+  padding: 3vh;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--background-color1);
+  font-size: var(--font-size2);
+  font-family: var(--font-family2);
+}
+
+.header__logo{
+  width: 25vh;
+  height: 25vh;
+  margin-right: 3vh;
+}
+
+.header__contacts{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__photo-owner{
+  width: 25vh;
+  height: 25vh;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.contacts__wrap-phone-number{
+  display: flex;
+  flex-direction: row;
+  font-size: var(--font-size1);
+}
+
+.contacts__phone-number{
+  display: flex;
+  align-items: center;
+  margin-right: 3vh;
+}
+
+.contacts__telegram-img,
+.contacts__phone-img{
+  width: 8vh;
+  height: 8vh;
+}
+
+.contacts__phone-img{
+  margin-right: 3vh;
+}
