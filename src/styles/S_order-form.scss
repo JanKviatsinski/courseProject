@@ -27,13 +27,26 @@
 }
 
 #order-form{
+  > *{
+    margin-bottom: 3vh;
+  }
 
+  legend,
+  label{
+    margin-bottom: 1vh;
+  }
+
+  *:last-child{
+    margin: 0;
+  }
 }
 
-#order-form > *{
-  margin-bottom: 3vh;
+.order-form__labels-wrap{
+  padding-left: 3vh;
+  display: flex;
+  flex-direction: column;
 }
 
-//#order-form:first-child{
-//  margin: 100px;
-//}
+#order-form__textarea{
+  width: 100%;
+}

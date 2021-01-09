@@ -64,64 +64,79 @@
             <form id="order-form" name="order-form">
                 <fieldset>
                     <legend>Сыр желтый 10руб/500г</legend>
+                    <div class="order-form__labels-wrap">
                     <label><input type="radio" name="yellow-cheese"> 300 </label>
                     <label><input type="radio" name="yellow-cheese"> 500 </label>
                     <label><input type="radio" name="yellow-cheese"> 700 </label>
                     <label><input type="radio" name="yellow-cheese"> 1000</label>
                     <label><input type="radio" name="yellow-cheese"> 1500 </label>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Сыр белый 8руб/500г</legend>
+                    <div class="order-form__labels-wrap">
                     <label><input type="radio" name="white-cheese"> 300 </label>
                     <label><input type="radio" name="white-cheese"> 500 </label>
                     <label><input type="radio" name="white-cheese"> 700 </label>
                     <label><input type="radio" name="white-cheese"> 1000 </label>
                     <label><input type="radio" name="white-cheese"> 1500 </label>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Творог 4руб/500г</legend>
+                    <div class="order-form__labels-wrap">
                     <label><input type="radio" name="curd"> 500 </label>
                     <label><input type="radio" name="curd"> 700 </label>
                     <label><input type="radio" name="curd"> 1000 </label>
                     <label><input type="radio" name="curd"> 1500 </label>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Сметана 4руб/500г</legend>
+                    <div class="order-form__labels-wrap">
                     <label><input type="radio" name="sour-cream"> 500</label>
                     <label><input type="radio" name="sour-cream"> 1000</label>
                     <label><input type="radio" name="sour-cream"> 1500</label>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Масло 10руб/500г</legend>
+                    <div class="order-form__labels-wrap">
                     <label><input type="radio" name="butter"> 300 </label>
                     <label><input type="radio" name="butter"> 500 </label>
                     <label><input type="radio" name="butter"> 700 </label>
                     <label><input type="radio" name="butter"> 1000</label>
                     <label><input type="radio" name="butter"> 1500</label>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Молоко 2руб/л</legend>
+                    <div class="order-form__labels-wrap">
                     <label><input type="radio" name="milk"> 1 </label>
                     <label><input type="radio" name="milk"> 2 </label>
                     <label><input type="radio" name="milk"> 3 </label>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Сыворотка бесплатно</legend>
+                    <div class="order-form__labels-wrap">
                     <label><input type="radio"> 1 </label>
                     <label><input type="radio"> 2 </label>
+                    </div>
                 </fieldset>
 
-                <textarea placeholder="Ваши замечания и предложения:)"></textarea>
+                <textarea id="order-form__textarea"
+                          placeholder="Ваши замечания и предложения:)"></textarea>
 
                 <div class="order-form__buttons">
-                    <button type="submit">Заказать</button>
                     <button type="reset">Очистить форму</button>
+                    <button type="submit">Заказать</button>
                 </div>
             </form>
         </div>
