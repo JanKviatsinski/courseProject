@@ -1,39 +1,57 @@
 
 .section-order-form{
+  position: relative;
   display: flex;
   justify-content: center;
 }
 
-.order-form-wrap{
+.section-order-form__background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  left: 0;
+}
+
+.section-order-form-wrap{
+  position: relative;
   width: 100%;
   max-width: 1440px;
-  padding: 30px;
+  padding: 50px;
   box-sizing: border-box;
-  //background: var(--background-color1);
-  //box-shadow: 0 15px 15px var(--background-color1);
-  //font-family: var(--font-family1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+}
+
+.section-order-form__header{
+  background: var(--background-color1);
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.section-order-form__header-wrap{
+  padding: 2vw;
 }
 
 .section-order-form__title{
-  margin-bottom: 1vh;
+  margin-bottom: 10px;
 }
 
 .section-order-form__paragraph{
-  margin-bottom: 5vh;
 }
 
 #order-form{
-  > *{
-    margin-bottom: 3vh;
+  background: var(--background-color1);
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+
+  fieldset{
+    border-radius: 4px;
   }
 
   legend,
   label{
-    margin-bottom: 1vh;
+    margin-bottom: 10px;
   }
 
   *:last-child{
@@ -41,12 +59,59 @@
   }
 }
 
+.order-form__products{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  grid-gap: 3vw;
+  padding: 15px 3vw 10px 3vw;
+}
+
 .order-form__labels-wrap{
-  padding-left: 3vh;
+  padding-left: 15px;
   display: flex;
   flex-direction: column;
+
+}
+
+.order-form__form-controls{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 3vw 15px 3vw;;
+  align-self: center;
+  align-items: center;
+
+  input{
+    outline: none;
+    border: none;
+    width: 30vw;
+    //height: 30px;
+    border-radius: 4px;
+    font-size: var(--font-size3);
+  }
 }
 
 #order-form__textarea{
-  width: 100%;
+  resize: none;
+  outline: none;
+  border: none;
+  width: 50vw;
+  height: 50px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: var(--font-size3);
 }
+
+.order-form__btn-reset,
+.order-form__btn-submit{
+  background: var(--background-color2);
+  border-radius: 4px;
+
+  strong{
+    display: block;
+    padding: 12px;
+  }
+}
+.order-form__btn-reset{
+  margin-right: 2vw;
+}
+

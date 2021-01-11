@@ -25,20 +25,28 @@
 }
 
 .header__owner{
-  margin-right: 3vh;
+  margin-right: 2vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.header__photo-owner{
+  width: 20vw;
+  height: 20vw;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .header__name-owner{
   font-size: var(--font-size1);
+  letter-spacing: 1.5px;
 }
 
 .header__btn-information-owner{
   position: relative;
-  width: 4vh;
-  height: 4vh;
+  width: 3vw;
+  height: 3vw;
   border-right: 3px solid var(--background-color2);
   border-bottom: 3px solid var(--background-color2);
   transform-origin: left top;
@@ -53,14 +61,14 @@
 .header__btn-information-owner:after{
   position: absolute;
   content: "";
-  width: 5vh;
-  height: 5vh;
+  width: 4vw;
+  height: 4vw;
   border-right: 3px solid var(--background-color2);
   border-bottom: 3px solid var(--background-color2);
   }
 
 .header__information-owner{
-  padding: 3vh;
+  padding: 15px;
   position: absolute;
   top: 100%;
   left: 0;
@@ -70,9 +78,9 @@
 }
 
 .header__logo{
-  width: 25vh;
-  height: 25vh;
-  margin-right: 3vh;
+  width: 20vw;
+  height: 20vw;
+  margin-right: 3vw;
 }
 
 .header__contacts{
@@ -81,31 +89,25 @@
   align-items: center;
 }
 
-.header__photo-owner{
-  width: 25vh;
-  height: 25vh;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
 .contacts__wrap-phone-number{
   display: flex;
   flex-direction: row;
   font-size: var(--font-size1);
+  margin-right: 3vw;
 }
 
 .contacts__phone-number{
   display: flex;
   align-items: center;
-  margin-right: 3vh;
+  letter-spacing: 1.5px;
 }
 
 .contacts__telegram-img,
 .contacts__phone-img{
-  width: 8vh;
-  height: 8vh;
+  width: 5vw;
+  height: 5vw;
 }
 
 .contacts__phone-img{
-  margin-right: 3vh;
+  margin-right: 1vw;
 }

@@ -11,7 +11,7 @@
 <header class="header">
     <picture>
         <source srcset="./img/header-background.jpg">
-        <img class="header__background" src="./img/header-background.jpg" alt="background">
+        <img class="header__background" src="./img/header-background.jpg" alt="header background">
     </picture>
 
     <div class="header-wrap">
@@ -38,7 +38,6 @@
         </div>
 
         <button class="contacts__btn-telegram">
-
         <img class="contacts__telegram-img" src="./img/telegram.svg" alt="telegram">
         </button>
     </div>
@@ -51,17 +50,28 @@
 
 <main>
     <section class="section-order-form">
-        <div class="order-form-wrap">
+        <picture>
+            <source srcset="./img/section-order-form-background.jpg">
+            <img class="section-order-form__background" src="./img/section-order-form-background.jpg"
+                 alt="order form background">
+        </picture>
+
+        <div class="section-order-form-wrap">
+            <header class="section-order-form__header">
+                <div class="section-order-form__header-wrap">
             <h2 class="section-order-form__title">
-                Форма для оформления заказа
+                Здесь вы можете сделать заказ
             </h2>
 
-            <p class="section-order-form__paragraph">
-                Для оформления заказа отметте пожалуйста необходимые пункты и
+            <p class="section-order-form__paragraph"><!--проверить перезаполнение-->
+                Для оформления заказа заполните необходимые поля и
                 нажмите кнопку "Заказать".
             </p>
+                </div>
+            </header>
 
             <form id="order-form" name="order-form">
+                <div class="order-form__products">
                 <fieldset>
                     <legend>Сыр желтый 10руб/500г</legend>
                     <div class="order-form__labels-wrap">
@@ -126,17 +136,37 @@
                 <fieldset>
                     <legend>Сыворотка бесплатно</legend>
                     <div class="order-form__labels-wrap">
-                    <label><input type="radio"> 1 </label>
-                    <label><input type="radio"> 2 </label>
+                    <label><input type="radio" name="serum"> 1 </label>
+                    <label><input type="radio" name="serum"> 2 </label>
                     </div>
                 </fieldset>
 
-                <textarea id="order-form__textarea"
-                          placeholder="Ваши замечания и предложения:)"></textarea>
+                    <fieldset>
+                        <legend>Адрес где можете забрать заказ</legend>
+                        <div class="order-form__labels-wrap">
+                            <label><input type="radio" name="address"> Адрес доставки 1 </label>
+                            <label><input type="radio" name="address"> Адрес доставки 2 </label>
+                        </div>
+                    </fieldset>
+                </div>
 
-                <div class="order-form__buttons">
-                    <button type="reset">Очистить форму</button>
-                    <button type="submit">Заказать</button>
+                <div class="order-form__form-controls">
+                    <textarea id="order-form__textarea"
+                          placeholder="Замечания и предложения:)"></textarea>
+
+                    <label>Ваше имя <input type="text"></label>
+
+                    <div class="order-form__buttons">
+                    <button class="order-form__btn-reset"
+                            type="reset">
+                        <strong>Очистить форму</strong>
+                    </button>
+
+                    <button class="order-form__btn-submit"
+                            type="submit">
+                        <strong>Заказать</strong>
+                    </button>
+                </div>
                 </div>
             </form>
         </div>
