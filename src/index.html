@@ -8,13 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="header">
+<div class="wrapper">
     <picture>
-        <source srcset="./img/header-background.jpg">
-        <img class="header__background" src="./img/header-background.jpg" alt="header background">
-    </picture>
+    <source srcset="./img/header-background.jpg">
+    <img class="header__background" src="./img/header-background.jpg" alt="header background">
+</picture>
 
+<header class="header">
     <div class="header-wrap">
+        <div class="wrapper2">
         <div class="header__owner">
             <img class="header__photo-owner" src="./img/photo-owner.jpg" alt="photo owner">
 
@@ -41,12 +43,16 @@
         <img class="contacts__telegram-img" src="./img/telegram.svg" alt="telegram">
         </button>
     </div>
+        </div>
         <p class="header__information-owner">
+            Сыр — пищевой продукт, получаемый из сыропригодного молока с использованием свёртывающих молоко ферментов и молочнокислых бактерий или путём плавления различных молочных продуктов и сырья немолочного происхождения с применением солей-плавителей.
+            Сыр — пищевой продукт, получаемый из сыропригодного молока с использованием свёртывающих молоко ферментов и молочнокислых бактерий или путём плавления различных молочных продуктов и сырья немолочного происхождения с применением солей-плавителей.
             Сыр — пищевой продукт, получаемый из сыропригодного молока с использованием свёртывающих молоко ферментов и молочнокислых бактерий или путём плавления различных молочных продуктов и сырья немолочного происхождения с применением солей-плавителей.
 <!--        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, eius, voluptas. Accusantium aliquam aperiam architecto consequatur cum dignissimos eligendi, facilis iste itaque nisi nulla quibusdam quo sed ullam voluptate voluptates?-->
         </p>
     </div>
 </header>
+</div>
 
 <main>
     <section class="section-order-form">
@@ -56,7 +62,7 @@
                  alt="order form background">
         </picture>
 
-        <div class="section-order-form-wrap">
+        <div class="section-order-form__wrap">
             <header class="section-order-form__header">
                 <div class="section-order-form__header-wrap">
             <h2 class="section-order-form__title">
@@ -71,6 +77,7 @@
             </header>
 
             <form id="order-form" name="order-form">
+                <div class="order-form__wrap">
                 <div class="order-form__products">
                 <fieldset>
                     <legend>Сыр желтый 10руб/500г</legend>
@@ -152,9 +159,9 @@
 
                 <div class="order-form__form-controls">
                     <textarea id="order-form__textarea"
-                          placeholder="Замечания и предложения:)"></textarea>
+                          placeholder=" Замечания и предложения:)"></textarea>
 
-                    <label>Ваше имя <input type="text"></label>
+                    <input type="text" placeholder=" Ваше имя">
 
                     <div class="order-form__buttons">
                     <button class="order-form__btn-reset"
@@ -166,6 +173,7 @@
                             type="submit">
                         <strong>Заказать</strong>
                     </button>
+                </div>
                 </div>
                 </div>
             </form>

@@ -1,52 +1,72 @@
-.header {
-  position: relative;
-  display: flex;
-  justify-content: center;
+.wrapper{display: block;
+  //position: relative;
+  min-height: 100vh;
 }
 
 .header__background{
   width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.header-wrap{
+.header {
   position: absolute;
-  width: 100%;
-  max-width: 1440px;
-  padding: 30px;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  //min-height: 100vh;
+  min-width: 100%;
+  min-height: 200px;
   background: var(--background-color1);
   box-shadow: 0 15px 15px var(--background-color1);
+}
+
+
+
+.header-wrap{
+  //position: absolute;
+  //width: 100%;
+  width: 1440px;
+  padding: 30px;
+  box-sizing: border-box;
+  //background: var(--background-color1);
+  //box-shadow: 0 15px 15px var(--background-color1);
   font-family: var(--font-family1);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
 
+.wrapper2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
 .header__owner{
-  margin-right: 2vw;
+  margin-right: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .header__photo-owner{
-  width: 20vw;
-  height: 20vw;
-  object-fit: cover;
+  //width: 100%;
+  max-width: 350px;
+  //max-height: 350px;
   border-radius: 50%;
 }
 
 .header__name-owner{
-  font-size: var(--font-size1);
+  font-size: var(--font-size4);
   letter-spacing: 1.5px;
 }
 
 .header__btn-information-owner{
   position: relative;
-  width: 3vw;
-  height: 3vw;
+  width: 25px;
+  height: 25px;
   border-right: 3px solid var(--background-color2);
   border-bottom: 3px solid var(--background-color2);
   transform-origin: left top;
@@ -61,26 +81,28 @@
 .header__btn-information-owner:after{
   position: absolute;
   content: "";
-  width: 4vw;
-  height: 4vw;
+  width: 30px;
+  height: 30px;
   border-right: 3px solid var(--background-color2);
   border-bottom: 3px solid var(--background-color2);
   }
 
 .header__information-owner{
   padding: 15px;
-  position: absolute;
-  top: 100%;
-  left: 0;
+  //position: absolute;
+  //top: 100%;
+  //left: 0;
   background: var(--background-color1);
   font-size: var(--font-size2);
   font-family: var(--font-family2);
+  border-radius: 4px;
 }
 
 .header__logo{
-  width: 20vw;
-  height: 20vw;
-  margin-right: 3vw;
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  margin-right: 20px;
 }
 
 .header__contacts{
@@ -92,22 +114,22 @@
 .contacts__wrap-phone-number{
   display: flex;
   flex-direction: row;
-  font-size: var(--font-size1);
-  margin-right: 3vw;
+  margin-right: 15px;
 }
 
 .contacts__phone-number{
   display: flex;
   align-items: center;
   letter-spacing: 1.5px;
+  font-size: var(--font-size4);
 }
 
 .contacts__telegram-img,
 .contacts__phone-img{
-  width: 5vw;
-  height: 5vw;
+  //width: 100%;
+  max-width: 80px;
 }
 
 .contacts__phone-img{
-  margin-right: 1vw;
+  margin-right: 10px;
 }
