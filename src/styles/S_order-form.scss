@@ -17,18 +17,18 @@
   position: relative;
   width: 100%;
   max-width: 1440px;
-  padding: var(--padding-wrap);
+  padding: var(--indentation1);
   box-sizing: border-box;
 }
 
 .section-order-form__header{
   background: var(--background-color1);
-  border-radius: 4px;
+  border-radius: var(--border-raius1);
   margin-bottom: 15px;
 }
 
 .section-order-form__header-wrap{
-  padding: var(--padding-wrap);
+  padding: var(--indentation1);
 }
 
 .section-order-form__title{
@@ -44,31 +44,33 @@
   background: var(--background-color1);
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
+  border-radius: var(--border-raius1);
   font-size: var(--font-size1);
 
   fieldset{
-    border-radius: 4px;
+    border-radius: var(--border-raius1);
   }
 
   legend{
     margin-bottom: 10px;
+    padding: 10px;/*на счет этого падинга не уверен*/
   }
 
-  *:last-child{
-    margin: 0;
-  }
 }
 
 .order-form__wrap{
-  padding: var(--padding-wrap);
+  padding: var(--indentation1);
 }
 
 .order-form__products{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: var(--indentation1);
   margin-bottom: 15px;
+
+  *:last-child{
+    margin: 0;
+  }
 }
 
 .order-form__labels-wrap{
@@ -78,7 +80,11 @@
 
   label{
     margin-bottom: 10px;
-    //font-size: var(--font-size1);
+    //font-size: var(--font-size0);
+    input{
+      min-width: 1rem;
+      min-height: 1rem;
+    }
   }
 }
 
@@ -91,11 +97,10 @@
   input{
     outline: none;
     border: none;
-    width: 30vw;
-    max-width: 600px;
-    height: 30px;
-    border-radius: 4px;
-    font-size: var(--font-size2);
+    width: 15rem;
+    height: 2rem;
+    border-radius: var(--border-raius1);
+    font-size: var(--font-size1);
     margin-bottom: 10px;
   }
 }
@@ -104,18 +109,27 @@
   resize: none;
   outline: none;
   border: none;
-  width: 50vw;
-  max-width: 800px;
+  width: 15rem;
   height: 50px;
-  border-radius: 4px;
+  border-radius: var(--border-raius1);
   margin-bottom: 10px;
   font-size: var(--font-size0);
+}
+
+.order-form__buttons{
+  display: flex;
+  flex-wrap: wrap;
+  //align-items: flex-start;
+  margin-bottom: -15px;
+  margin-right: -30px;
 }
 
 .order-form__btn-reset,
 .order-form__btn-submit{
   background: var(--background-color2);
-  border-radius: 4px;
+  border-radius: var(--border-raius1);
+  margin-bottom: 15px;
+  margin-right: 30px;
 
   strong{
     display: block;
@@ -123,7 +137,4 @@
   }
 }
 
-.order-form__btn-reset{
-  margin-right: 30px;
-}
 

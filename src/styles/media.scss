@@ -4,6 +4,12 @@
   }
 
   :root{
-    --padding-wrap:  1.2rem;
+    --indentation1:  1.2rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .order-form__products{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
