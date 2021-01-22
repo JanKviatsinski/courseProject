@@ -1,17 +1,18 @@
-.wrapper{display: block;
-  //position: relative;
+.main-header-panel{
+  //display: block;
+  position: relative;
   min-height: 100vh;
 }
 
-.header__background{
+.main-header-panel__background{
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.header {
-  position: absolute;
+.main-header {
+  position: relative;
   display: flex;
   justify-content: center;
   //min-height: 100vh;
@@ -21,13 +22,11 @@
   box-shadow: 0 15px 15px var(--background-color1);
 }
 
-
-
-.header-wrap{
+.main-header-wrap{
   //position: absolute;
   //width: 100%;
   width: 1440px;
-  padding: 30px;
+  padding: var(--padding-wrap);
   box-sizing: border-box;
   //background: var(--background-color1);
   //box-shadow: 0 15px 15px var(--background-color1);
@@ -37,33 +36,34 @@
   justify-content: space-between;
 }
 
-.wrapper2{
+.main-header_main-information{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 30px;
+  align-items: center;
 }
 
-.header__owner{
+.main-header__owner{
   margin-right: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.header__photo-owner{
+.main-header__photo-owner{
   //width: 100%;
-  max-width: 350px;
+  max-width: 10rem;
   //max-height: 350px;
   border-radius: 50%;
 }
 
-.header__name-owner{
+.main-header__name-owner{
   font-size: var(--font-size4);
   letter-spacing: 1.5px;
 }
 
-.header__btn-information-owner{
+.main-header__btn-information-owner{
   position: relative;
   width: 25px;
   height: 25px;
@@ -78,34 +78,23 @@
   animation-iteration-count: infinite;
 }
 
-.header__btn-information-owner:after{
+.main-header__btn-information-owner:after{
   position: absolute;
   content: "";
   width: 30px;
   height: 30px;
   border-right: 3px solid var(--background-color2);
   border-bottom: 3px solid var(--background-color2);
-  }
-
-.header__information-owner{
-  padding: 15px;
-  //position: absolute;
-  //top: 100%;
-  //left: 0;
-  background: var(--background-color1);
-  font-size: var(--font-size2);
-  font-family: var(--font-family2);
-  border-radius: 4px;
 }
 
-.header__logo{
-  width: 100%;
-  height: 100%;
-  max-width: 300px;
-  margin-right: 20px;
+.main-header__logo{
+  //width: 100%;
+  //height: 100%;
+  max-width: 6rem;
+  margin-right: 10px;
 }
 
-.header__contacts{
+.main-header__contacts{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -127,9 +116,20 @@
 .contacts__telegram-img,
 .contacts__phone-img{
   //width: 100%;
-  max-width: 80px;
+  max-width: 2.6rem;
 }
 
 .contacts__phone-img{
   margin-right: 10px;
+}
+
+.main-header__greeting-owner{
+  padding: 15px;
+  //position: absolute;
+  //top: 100%;
+  //left: 0;
+  background: var(--background-color1);
+  font-size: var(--font-size2);
+  font-family: var(--font-family2);
+  border-radius: 4px;
 }

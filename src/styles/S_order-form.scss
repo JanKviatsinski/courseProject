@@ -17,7 +17,7 @@
   position: relative;
   width: 100%;
   max-width: 1440px;
-  padding: 40px;
+  padding: var(--padding-wrap);
   box-sizing: border-box;
 }
 
@@ -28,16 +28,16 @@
 }
 
 .section-order-form__header-wrap{
-  padding: 15px 40px;
+  padding: var(--padding-wrap);
 }
 
 .section-order-form__title{
   margin-bottom: 10px;
-  font-size: var(--font-size3);
+  font-size: var(--font-size2);
 }
 
 .section-order-form__paragraph{
-  //font-size: var(--font-size1);
+  font-size: var(--font-size1);
 }
 
 #order-form{
@@ -45,14 +45,13 @@
   display: flex;
   flex-direction: column;
   border-radius: 4px;
-  //font-size: var(--font-size1);
+  font-size: var(--font-size1);
 
   fieldset{
     border-radius: 4px;
   }
 
-  legend,
-  label{
+  legend{
     margin-bottom: 10px;
   }
 
@@ -62,7 +61,7 @@
 }
 
 .order-form__wrap{
-  padding: 15px 40px;
+  padding: var(--padding-wrap);
 }
 
 .order-form__products{
@@ -77,6 +76,10 @@
   display: flex;
   flex-direction: column;
 
+  label{
+    margin-bottom: 10px;
+    //font-size: var(--font-size1);
+  }
 }
 
 .order-form__form-controls{

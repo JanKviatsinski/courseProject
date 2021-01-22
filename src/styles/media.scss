@@ -1,0 +1,9 @@
+@media (max-width: 700px) {
+  .main-header_main-information{
+    flex-direction: column;
+  }
+
+  :root{
+    --padding-wrap:  1.2rem;
+  }
+}
