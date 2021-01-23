@@ -1,15 +1,42 @@
 @media (max-width: 700px) {
-  .main-header_main-information{
+  :root {
+    --indentation1: 1.2rem;
+  }
+
+  .main-header_main-information {
     flex-direction: column;
   }
 
-  :root{
-    --indentation1:  1.2rem;
+  .main-header__owner {
+    order: 1;
+  }
+
+  .contacts__phone-img {
+    display: none;
+  }
+
+  @keyframes button-animation {
+    0% {
+      left: 0;
+      top: 0;
+    }
+    100% {
+      left: 0;
+      top: 3px;
+    }
+  }
+
+  .main-header__btn-greeting-owner {
+    transform: scale(0.8, 1.5) rotate(45deg);
+  }
+
+  .greeting-owner__bottom-btn-close {
+    display: block;
   }
 }
 
 @media (max-width: 1000px) {
-  .order-form__products{
+  .order-form__products {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }

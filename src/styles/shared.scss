@@ -1,5 +1,5 @@
 :root{
-  font-size: clamp(15px, 2vw, 30px);
+  font-size: clamp(15px, 2vw, 22px);
 }
 body{
   background: #5d3535;
@@ -21,7 +21,9 @@ button {
   padding: 0;
   outline: none;
   border: none;
-  text-transform: uppercase
+  text-transform: uppercase;
+  //по умоланю если на смартфоне тапоешь по кнопке то на active
+  // бекграунд менятся. как от этого избавиться?
 }
 
 picture{

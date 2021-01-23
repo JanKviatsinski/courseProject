@@ -1,12 +1,6 @@
 'use strict'
 const greetingOwner = document.body.querySelector('.greeting-owner-wrap');
-// greetingOwner.hidden = true;
-
-const parentGreetingOwner = greetingOwner.parentNode;
-const metricParentGreetingOwner = parentGreetingOwner.getBoundingClientRect();
-
-greetingOwner.style.width = metricParentGreetingOwner.width + 'px';
-greetingOwner.style.left = metricParentGreetingOwner.left + 'px';
+greetingOwner.hidden = true;
 
 const btnGreetingOwner = document.body.querySelector('.main-header__btn-greeting-owner');
 btnGreetingOwner.addEventListener('click', () =>{

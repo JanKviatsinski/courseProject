@@ -5,184 +5,129 @@
     <title>Titled</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="./index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
 <div class="main-header-panel">
     <picture>
-        <source srcset="./img/header-background.jpg">
-        <img class="main-header-panel__background" src="./img/header-background.jpg" alt="header background">
+        <source media="(max-width:700px)" srcset="./img/header-background-mobile.jpg">
+        <img class="main-header-panel__background" src="./img/header-background.jpg"
+             alt="header background">
     </picture>
 
-<header class="main-header">
-    <div class="main-header-wrap">
-        <div class="main-header_main-information">
-        <div class="main-header__owner">
-            <img class="main-header__photo-owner" src="./img/photo-owner.jpg" alt="photo owner">
+    <header class="main-header">
+        <div class="main-header-wrap">
+            <div class="main-header_main-information">
+                <div class="main-header__owner">
+                    <img class="main-header__photo-owner" src="./img/photo-owner.jpg"
+                         alt="photo owner">
 
-            <p class="main-header__name-owner">
-                Name Surname
-            </p>
+                    <p class="main-header__name-owner">
+                        Name Surname
+                    </p>
 
-            <button class="main-header__btn-greeting-owner">
-            </button >
+                    <button class="main-header__btn-greeting-owner">
+                    </button>
+                </div>
+
+                <img class="main-header__logo" src="./img/logo.png" alt="logo">
+
+                <div class="main-header__contacts">
+                    <div class="contacts__wrap-phone-number">
+                        <img class="contacts__phone-img" src="./img/img-phone.svg" alt="img phone">
+
+                        <p class="contacts__phone-number">
+                            +375290000000
+                        </p>
+                    </div>
+
+                    <button class="contacts__btn-telegram">
+                        <img class="contacts__telegram-img" src="./img/telegram.svg" alt="telegram">
+                    </button>
+                </div>
+            </div>
+
+            <div class="greeting-owner-wrap">
+                <button class="greeting-owner__top-btn-close"></button>
+
+                <p class="main-header__greeting-owner">
+                    Привет, меня зовут Ян. Я фермер. Уже пять лет мы занимаемся молочкой. У нас свои коровы,
+                    есть земля, сами заготавливаем коровам корма. Мне нравится то чем я занимаюсь, поэтому
+                    получается вкусно и полезно, и это приятно. А еще приятно получать хорошие отзывы и
+                    благодарности.
+                    На этой страничке вы можете поближе познакомиться с нами и нашими коровками. По всем вопросам можно писать в телеграмм. Пока, удачи))
+                </p>
+
+                <button class="greeting-owner__bottom-btn-close"></button>
+            </div>
         </div>
-
-    <img class="main-header__logo" src="./img/logo.png" alt="logo">
-
-    <div class="main-header__contacts">
-        <div class="contacts__wrap-phone-number">
-            <img class="contacts__phone-img" src="./img/img-phone.svg" alt="img phone">
-
-            <p class="contacts__phone-number">
-                +375290000000
-            </p>
-        </div>
-
-        <button class="contacts__btn-telegram">
-        <img class="contacts__telegram-img" src="./img/telegram.svg" alt="telegram">
-        </button>
-    </div>
-        </div>
-
-<div class="greeting-owner-wrap">
-    <button class="greeting-owner__btn-close"></button>
-        <p class="main-header__greeting-owner">
-            Сыр — пищевой продукт, получаемый из сыропригодного молока с использованием
-            свёртывающих молоко ферментов и молочнокислых бактерий или путём плавления различных молочных продуктов и сырья немолочного происхождения с применением солей-плавителей.
-            свёртывающих молоко ферментов и молочнокислых бактерий или путём плавления различных молочных продуктов и сырья немолочного происхождения с применением солей-плавителей.
-        </p>
-</div>
-    </div>
-</header>
+    </header>
 </div>
 
 <main>
     <section class="section-order-form">
         <picture>
-            <source srcset="./img/section-order-form-background.jpg">
-            <img class="section-order-form__background" src="./img/section-order-form-background.jpg"
+            <source media="(max-width:700px)"
+                    srcset="./img/section-order-form-background-mobile.jpg">
+            <img class="section-order-form__background"
+                 src="./img/section-order-form-background.jpg"
                  alt="order form background">
         </picture>
 
         <div class="section-order-form__wrap">
             <header class="section-order-form__header">
                 <div class="section-order-form__header-wrap">
-            <h2 class="section-order-form__title">
-                Здесь вы можете сделать заказ
-            </h2>
+                    <h2 class="section-order-form__title">
+                        Здесь вы можете сделать заказ
+                    </h2>
 
-            <p class="section-order-form__paragraph"><!--проверить перезаполнение-->
-                Для оформления заказа заполните необходимые поля и
-                нажмите кнопку "Заказать".
-            </p>
+                    <p class="section-order-form__paragraph">
+                        Для оформления заказа заполните необходимые поля и
+                        нажмите кнопку "Заказать".
+                    </p>
                 </div>
             </header>
 
             <form id="order-form" name="order-form">
                 <div class="order-form__wrap">
-                <div class="order-form__products">
-                <fieldset>
-                    <legend>Сыр желтый 10руб/500г</legend>
-                    <div class="order-form__labels-wrap">
-                    <label><input type="radio" name="yellow-cheese"> 300 </label>
-                    <label><input type="radio" name="yellow-cheese"> 500 </label>
-                    <label><input type="radio" name="yellow-cheese"> 700 </label>
-                    <label><input type="radio" name="yellow-cheese"> 1000</label>
-                    <label><input type="radio" name="yellow-cheese"> 1500 </label>
+                    <div class="order-form__products">
+
                     </div>
-                </fieldset>
 
-                <fieldset>
-                    <legend>Сыр белый 8руб/500г</legend>
-                    <div class="order-form__labels-wrap">
-                    <label><input type="radio" name="white-cheese"> 300 </label>
-                    <label><input type="radio" name="white-cheese"> 500 </label>
-                    <label><input type="radio" name="white-cheese"> 700 </label>
-                    <label><input type="radio" name="white-cheese"> 1000 </label>
-                    <label><input type="radio" name="white-cheese"> 1500 </label>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Творог 4руб/500г</legend>
-                    <div class="order-form__labels-wrap">
-                    <label><input type="radio" name="curd"> 500 </label>
-                    <label><input type="radio" name="curd"> 700 </label>
-                    <label><input type="radio" name="curd"> 1000 </label>
-                    <label><input type="radio" name="curd"> 1500 </label>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Сметана 4руб/500г</legend>
-                    <div class="order-form__labels-wrap">
-                    <label><input type="radio" name="sour-cream"> 500</label>
-                    <label><input type="radio" name="sour-cream"> 1000</label>
-                    <label><input type="radio" name="sour-cream"> 1500</label>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Масло 10руб/500г</legend>
-                    <div class="order-form__labels-wrap">
-                    <label><input type="radio" name="butter"> 300 </label>
-                    <label><input type="radio" name="butter"> 500 </label>
-                    <label><input type="radio" name="butter"> 700 </label>
-                    <label><input type="radio" name="butter"> 1000</label>
-                    <label><input type="radio" name="butter"> 1500</label>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Молоко 2руб/л</legend>
-                    <div class="order-form__labels-wrap">
-                    <label><input type="radio" name="milk"> 1 </label>
-                    <label><input type="radio" name="milk"> 2 </label>
-                    <label><input type="radio" name="milk"> 3 </label>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Сыворотка бесплатно</legend>
-                    <div class="order-form__labels-wrap">
-                    <label><input type="radio" name="serum"> 1 </label>
-                    <label><input type="radio" name="serum"> 2 </label>
-                    </div>
-                </fieldset>
-
-                    <fieldset>
-                        <legend>Адрес где можете забрать заказ</legend>
-                        <div class="order-form__labels-wrap">
-                            <label><input type="radio" name="address"> Адрес доставки 1 </label>
-                            <label><input type="radio" name="address"> Адрес доставки 2 </label>
-                        </div>
-                    </fieldset>
-                </div>
-
-                <div class="order-form__form-controls">
+                    <div class="order-form__form-controls">
                     <textarea id="order-form__textarea"
-                          placeholder=" Замечания и предложения:)"></textarea>
+                              placeholder=" Замечания и предложения:)"></textarea>
 
-                    <input type="text" placeholder=" Ваше имя">
+                        <input type="text" placeholder=" Ваше имя"
+                               name="user-name">
 
-                    <div class="order-form__buttons">
-                    <button class="order-form__btn-reset"
-                            type="reset">
-                        <strong>Очистить форму</strong>
-                    </button>
+                        <div class="order-form__buttons">
+                            <button class="order-form__btn-reset"
+                                    type="reset">
+                                <strong>Очистить форму</strong>
+                            </button>
 
-                    <button class="order-form__btn-submit"
-                            type="submit">
-                        <strong>Заказать</strong>
-                    </button>
-                </div>
-                </div>
+                            <button class="order-form__btn-submit"
+                                    type="submit">
+                                <strong>Заказать</strong>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
     </section>
 </main>
+<template id="fieldset">
+    <fieldset>
+        <legend></legend>
+        <div class="order-form__labels-wrap">
+        </div>
+    </fieldset>
+</template>
+
 <script src="main-header.js"></script>
+<script src="S_order-form.js"></script>
 </body>
 </html>
