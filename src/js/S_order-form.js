@@ -15,6 +15,7 @@ function createFieldset(legend, inputType, inputName, ...rest){
         const input = document.createElement('input');
         input.type = inputType;
         input.name = inputName;
+        input.value = x;
 
         label.prepend(input);
         labelsWrap.append(label);
