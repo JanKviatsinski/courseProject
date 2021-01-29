@@ -25,25 +25,25 @@ function createFieldset(legend, inputType, inputName, ...rest){
     formProducts.append(clone);
 }
 
-createFieldset('Сыр белый 8руб/500г', 'radio', 'white-cheese',
+createFieldset('Сыр белый', 'radio', 'white-cheese',
     300, 500, 700, 1000, 1500);
 
-createFieldset('Сыр желтый 10руб/500г', 'radio', 'yellow-cheese',
+createFieldset('Сыр желтый', 'radio', 'yellow-cheese',
     300, 500, 700, 1000, 1500);
 
-createFieldset('Творог 4руб/500г', 'radio', 'curd',
+createFieldset('Творог', 'radio', 'curd',
     500, 700, 1000, 1500);
 
-createFieldset('Сметана 4руб/500г', 'radio', 'sour-cream',
+createFieldset('Сметана', 'radio', 'sour-cream',
     500, 1000, 1500);
 
-createFieldset('Масло 10руб/500г', 'radio', 'butter',
+createFieldset('Масло', 'radio', 'butter',
     300, 500, 700, 1000, 1500);
 
-createFieldset('Молоко 2руб/л', 'radio', 'milk',
+createFieldset('Молоко', 'radio', 'milk',
      1, 2, 3);
 
-createFieldset('Сыворотка бесплатно л.', 'radio', 'serum',
+createFieldset('Сыворотка', 'radio', 'serum',
     1, 2);
 
 createFieldset('Адрес где можете забрать заказ', 'radio', 'address',

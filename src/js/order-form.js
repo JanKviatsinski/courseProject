@@ -6,10 +6,10 @@ const modalOrderFormWrap = modalOrderForm.querySelector('.order-form__wrap-modal
 orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const userNote =
-            orderForm.querySelector('#order-form__textarea').value;
         const userName =
-            document.getElementsByName('user-name')[0].value;
+            orderForm.querySelector('.order-form__user-name');
+        const userNote =
+            orderForm.querySelector('textarea');
         const inputs = document.getElementsByTagName('input');
         const order = {};
 
@@ -17,11 +17,11 @@ orderForm.addEventListener('submit', async (e) => {
 
         for (let input of inputs) {
             if (input.checked) {
-                order[input.name] = input.value;
+                let legendText = input.closest('fieldset').querySelector('legend').textContent;
+                 order[legendText] = input.value;
                 productIsSelected = true;
             }
         }
-
         if (!productIsSelected) {
             modalOrderForm.style.display = 'block';
             modalOrderFormWrap.textContent = 'Вы не выбрали ни одного продукта';
@@ -53,7 +53,7 @@ orderForm.addEventListener('submit', async (e) => {
         if (Object.keys(orders).length === 0) {
             console.log('нет базы')
             postOrder(order, url)
-        } else if (orders[userName]) {
+        } else if (orders[userName.value]) {
             modalOrderForm.style.display = 'block';
             modalOrderFormWrap.textContent =
                 'Заказ с таким именем уже есть. Используйте пожалуста другое имя.';
@@ -65,12 +65,12 @@ orderForm.addEventListener('submit', async (e) => {
 
         if (!nameInDatabase) {
             console.log('сделаем новый')
-            postOrder(order, url)
+            postOrder(order, url);
         }
 
         async function postOrder(data, url) {
-            order.name = userName;
-            order.note = userNote;
+            order[userName.placeholder]= userName.value;
+            order[userNote.placeholder] = userNote.value;
             try {
                 const response = await fetch(
                     url, {
@@ -82,9 +82,8 @@ orderForm.addEventListener('submit', async (e) => {
                     });
                 const result = await response.json();
                 modalOrderForm.style.display = 'block';
-                let ddf = toString(data);
                 modalOrderFormWrap.textContent =
-                    `Отлично! Заказ принят. Ваш заказ ${ddf}` ;
+                    `Отлично! Заказ принят. Ваш заказ ${result}` ;
                 console.log('новый заказ зарегестрирован', data);
             } catch (error) {
                 modalOrderForm.style.display = 'block';
@@ -107,11 +106,11 @@ document.body.addEventListener('click', (event) =>{
         modalOrderForm.style.display = 'none';
     }
 
-    if(clickObj !== btnGreetingOwner)
-    greetingOwner.hidden = !greetingOwner.hidden;
-    (!greetingOwner.hidden) ?
-        btnGreetingOwner.style.animationName = 'none' :
-        btnGreetingOwner.style.animationName = 'button-animation';
+    // if(clickObj !== btnGreetingOwner)
+    // greetingOwner.hidden = !greetingOwner.hidden;
+    // (!greetingOwner.hidden) ?
+    //     btnGreetingOwner.style.animationName = 'none' :
+    //     btnGreetingOwner.style.animationName = 'button-animation';
 })
 
 

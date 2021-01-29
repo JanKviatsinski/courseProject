@@ -98,16 +98,6 @@
   flex-direction: column;
   align-self: center;
   align-items: center;
-
-  input {
-    outline: none;
-    border: none;
-    width: 15rem;
-    height: 2rem;
-    border-radius: var(--border-raius1);
-    font-size: var(--font-size1);
-    margin-bottom: 1rem;
-  }
 }
 
 #order-form__textarea {
@@ -119,6 +109,16 @@
   border-radius: var(--border-raius1);
   margin-bottom: 1rem;
   font-size: var(--font-size0);
+}
+
+.order-form__user-name {
+  outline: none;
+  border: none;
+  width: 15rem;
+  height: 2rem;
+  border-radius: var(--border-raius1);
+  font-size: var(--font-size1);
+  margin-bottom: 1rem;
 }
 
 .order-form__buttons {
