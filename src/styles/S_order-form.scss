@@ -142,4 +142,25 @@
   }
 }
 
+.order-form__modal{
+  padding: var(--indentation1);
+  background: var(--background-color3);
+  font-size: var(--font-size1);
+  font-family: var(--font-family2);
+  border-radius: var(--border-raius1);
+  display: none;
+  position: fixed;
+  top: 0.5rem;
+  //left: 0;
+  //z-index: 100;
+  width: 66vw;
+  max-width: 54rem;
+  //max-width: 30;
+}
+
+.order-form__wrap-modal{
+  padding: var(--indentation1);
+  text-align: center;
+}
+
 
