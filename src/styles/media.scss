@@ -2,6 +2,9 @@
   :root {
     --indentation1: 1.2rem;
   }
+  .main-header-panel {
+    background-image: url(../img/header-background-mobile.jpg);
+  }
 
   .main-header_main-information {
     flex-direction: column;
@@ -26,7 +29,7 @@
     }
   }
 
-  .main-header__btn-greeting-owner {
+  .main-header__btn--greeting {
     transform: scale(0.8, 1.5) rotate(45deg);
   }
 

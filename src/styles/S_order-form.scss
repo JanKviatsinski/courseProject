@@ -1,20 +1,23 @@
 
 .section-order-form {
+  background-image: url(../img/section-order-form-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   display: flex;
   justify-content: center;
   min-height: 100vh;
 }
 
-.section-order-form__background {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  object-position: 60% 50%;
-}
+//.section-order-form__background {
+//  width: 100%;
+//  height: 100%;
+//  object-fit: cover;
+//  display: block;
+//  object-position: 60% 50%;
+//}
 
-.section-order-form__wrap {
+.section-order-form-wrap {
   position: relative;
   width: 100%;
   max-width: 1440px;
@@ -58,7 +61,7 @@
   }
 }
 
-.order-form__wrap {
+.order-form-wrap {
   padding: var(--indentation1);
 }
 
@@ -129,8 +132,8 @@
   //кнопки разместить по центру если меньше 350
 }
 
-.order-form__btn-reset,
-.order-form__btn-submit {
+.order-form__btn--reset,
+.order-form__btn--submit {
   background: var(--background-color2);
   border-radius: var(--border-raius1);
   margin-bottom: 15px;

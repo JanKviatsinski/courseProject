@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <title>Titled</title>
     <meta name="viewport" content="width=device-width">
+<!--    <meta name="viewport" content="width=500, initial-scale=1">-->
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap"
           rel="stylesheet">
 </head>
 <body>
 <div class="main-header-panel">
-    <picture>
-        <source media="(max-width:700px)" srcset="./img/header-background-mobile.jpg">
-        <img class="main-header-panel__background" src="./img/header-background.jpg"
-             alt="header background">
-    </picture>
-
     <header class="main-header">
         <div class="main-header-wrap">
             <div class="main-header_main-information">
@@ -27,7 +22,7 @@
                         Name Surname
                     </p>
 
-                    <button class="main-header__btn-greeting-owner">
+                    <button class="main-header__btn--greeting">
                     </button>
                 </div>
 
@@ -42,7 +37,7 @@
                         </p>
                     </div>
 
-                    <button class="contacts__btn-telegram">
+                    <button class="contacts__btn--telegram">
                         <img class="contacts__telegram-img" src="./img/telegram.svg" alt="telegram">
                     </button>
                 </div>
@@ -58,7 +53,7 @@
                     благодарности.
                     На этой страничке вы можете поближе познакомиться с нами и нашими коровками. По всем вопросам можно писать в телеграмм. Пока, удачи))
                 </p>
-<!--в принципе кнопки и не надо, удалить?-->
+
                 <button class="greeting-owner__bottom-btn-close"></button>
             </div>
         </div>
@@ -67,15 +62,8 @@
 
 <main>
     <section class="section-order-form">
-        <picture>
-            <source media="(max-width:700px)"
-                    srcset="./img/section-order-form-background-mobile.jpg">
-            <img class="section-order-form__background"
-                 src="./img/section-order-form-background.jpg"
-                 alt="order form background">
-        </picture>
 
-        <div class="section-order-form__wrap">
+        <div class="section-order-form-wrap">
             <header class="section-order-form__header">
                 <div class="section-order-form__header-wrap">
                     <h2 class="section-order-form__title">
@@ -90,7 +78,7 @@
             </header>
 
             <form id="order-form" name="order-form">
-                <div class="order-form__wrap">
+                <div class="order-form-wrap">
                     <div class="order-form__products">
                     </div>
 
@@ -102,12 +90,12 @@
                                autocomplete="off" placeholder=" Ваше имя">
 
                         <div class="order-form__buttons">
-                            <button class="order-form__btn-reset"
+                            <button class="order-form__btn--reset"
                                     type="reset">
                                 <strong>Очистить форму</strong>
                             </button>
 
-                            <button class="order-form__btn-submit"
+                            <button class="order-form__btn--submit"
                                     type="submit">
                                 <strong>Заказать</strong>
                             </button>

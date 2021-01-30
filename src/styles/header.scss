@@ -1,17 +1,11 @@
 .main-header-panel {
-  position: relative;
   min-height: 100vh;
-}
-
-.main-header-panel__background {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  background-image: url(../img/header-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .main-header {
-  position: relative;
   display: flex;
   justify-content: center;
   min-width: 100%;
@@ -20,8 +14,8 @@
 }
 
 .main-header-wrap {
-  position: relative;
   width: 1440px;
+  position: relative;
   padding: var(--indentation1);
   box-sizing: border-box;
   font-family: var(--font-family1);
@@ -60,7 +54,7 @@
   letter-spacing: 1.5px;
 }
 
-.main-header__btn-greeting-owner {
+.main-header__btn--greeting {
   position: relative;
   padding: 0.8rem;/*падинг не увеличил зону кликабельности
   когда кнопка в статике*/
@@ -74,7 +68,7 @@
   animation-iteration-count: infinite;
 }
 
-.main-header__btn-greeting-owner:after {
+.main-header__btn--greeting:after {
   position: absolute;
   content: "";
   width: 1rem;
