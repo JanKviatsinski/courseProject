@@ -3,7 +3,7 @@ const url = "https://course-project-kviatsinski-default-rtdb.firebaseio.com/orde
 const modalOrderForm = document.querySelector('.order-form__modal');
 const modalOrderFormWrap = modalOrderForm.querySelector('.order-form__wrap-modal');
 const paragraphModalOrder = modalOrderFormWrap.querySelector('.order-form__modal-paragraph')
-const tableModalOrderForm = document.createElement('table');
+let tableModalOrderForm = document.createElement('table');
 orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -25,6 +25,7 @@ orderForm.addEventListener('submit', async (e) => {
         }
 
         if (!productIsSelected) {
+            // tableModalOrderForm.remove();
             modalOrderForm.style.display = 'block';
             paragraphModalOrder.textContent = 'Вы не выбрали ни одного продукта';
             return false;
@@ -44,6 +45,7 @@ orderForm.addEventListener('submit', async (e) => {
 
             orders = modifiedObjOrders;
         } catch (error) {
+            // tableModalOrderForm.remove();
             modalOrderForm.style.display = 'block';
             paragraphModalOrder.textContent =
                 'Упс, что-то пошло не так. Попробуйте пожалуйста позже.';
@@ -52,6 +54,7 @@ orderForm.addEventListener('submit', async (e) => {
         }
 
         if (orders[userName.value]) {
+            // tableModalOrderForm.remove();
             modalOrderForm.style.display = 'block';
             paragraphModalOrder.textContent =
                 'Заказ с таким именем уже есть. Используйте пожалуста другое имя.';
@@ -63,7 +66,7 @@ orderForm.addEventListener('submit', async (e) => {
             order[userName.placeholder] = userName.value;
             order[userNote.placeholder] = userNote.value;
             try {
-                fetch(
+                await fetch(
                     url, {
                         method: 'Post',
                         headers: {
@@ -73,7 +76,6 @@ orderForm.addEventListener('submit', async (e) => {
                     });
                 modalOrderForm.style.display = 'block';
                 paragraphModalOrder.textContent = 'Отлично! Заказ принят.';
-
                 createDataTable(modalOrderFormWrap, data, tableModalOrderForm);
             } catch (error) {
                 modalOrderForm.style.display = 'block';
@@ -92,8 +94,7 @@ function delet() {
 
 document.body.addEventListener('click', (event) =>{
     const clickObj = event.target;
-
-    if (clickObj !== modalOrderForm){
+    if (modalOrderForm.compareDocumentPosition(clickObj) === 2){
         modalOrderForm.style.display = 'none';
         tableModalOrderForm.remove();
     }
@@ -105,18 +106,20 @@ document.body.addEventListener('click', (event) =>{
     //     btnGreetingOwner.style.animationName = 'button-animation';
 })
 
-function createDataTable(location, data, table){
+function createDataTable(location, data, form) {
+    form.innerHTML = '';
+
     for (let listPosition in data) {
-            const tableRow = table.insertRow();
-            const point = tableRow.insertCell();
-            const value = tableRow.insertCell();
+        const tableRow = form.insertRow();
+        const point = tableRow.insertCell();
+        const value = tableRow.insertCell();
         point.textContent = listPosition;
         value.textContent = data[listPosition];
     }
 
-    location.append(table);
+    location.append(form);
 
-    const tablePreviousSibling = table.previousElementSibling;
-    tablePreviousSibling.style.marginBottom = 1 + 'rem';
+    // const tablePreviousSibling = table.previousElementSibling;
+    // tablePreviousSibling.style.marginBottom = 1 + 'rem';
 }
 

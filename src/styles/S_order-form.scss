@@ -161,6 +161,10 @@
   text-align: center;
   padding: var(--indentation1);
 
+  > :not(:last-child){
+    margin-bottom: 1rem;
+  }
+
   table, th, td  {
     font-size: 0.9rem;
     //width: 100%;
@@ -173,6 +177,7 @@
     border-collapse: collapse;
     padding: 0.4rem;
   }
+
   th, td{
     display: table-cell;
     vertical-align: top;

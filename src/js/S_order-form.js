@@ -1,50 +1,82 @@
-function createFieldset(legend, inputType, inputName, ...rest){
+function createFieldset({legend, inputType, inputName, values}) {
     const template = document.querySelector('#fieldset');
+    const cloneNode = template.content.cloneNode( true);
 
-    const clone = document.importNode(template.content, true);
-
-    const fieldsetLegend = clone.querySelector("legend");
+    const fieldsetLegend = cloneNode.querySelector('legend');
     fieldsetLegend.textContent = legend;
 
-
-    const labelsWrap = clone.querySelector('.order-form__labels-wrap');
-    for (let x of rest){
-        const label = document.createElement('label');
-        label.textContent = x;
-
-        const input = document.createElement('input');
-        input.type = inputType;
-        input.name = inputName;
-        input.value = x;
-
-        label.prepend(input);
-        labelsWrap.append(label);
+    const labelsWrap = cloneNode.querySelector('.order-form__labels-wrap');
+    for (let value of values) {
+        labelsWrap.append(createLabel ({
+            value: value,
+            type: inputType,
+            name: inputName,
+        }));
     }
 
     const formProducts = document.querySelector('.order-form__products');
-    formProducts.append(clone);
+    formProducts.append(cloneNode);
 }
 
-createFieldset('Сыр белый', 'radio', 'white-cheese',
-    300, 500, 700, 1000, 1500);
+function createLabel ({value, type, name}) {
+    const label = document.createElement('label');
+    label.textContent = value;
 
-createFieldset('Сыр желтый', 'radio', 'yellow-cheese',
-    300, 500, 700, 1000, 1500);
+    const input = document.createElement('input');
+    input.type = type;
+    input.name = name;
+    input.value = value;
 
-createFieldset('Творог', 'radio', 'curd',
-    500, 700, 1000, 1500);
+    label.prepend(input);
 
-createFieldset('Сметана', 'radio', 'sour-cream',
-    500, 1000, 1500);
+    return label;
+}
 
-createFieldset('Масло', 'radio', 'butter',
-    300, 500, 700, 1000, 1500);
+createFieldset({
+    legend: 'Сыр белый',
+    inputType: 'radio',
+    inputName: 'white-cheese',
+    values: [300, 500, 700, 1000, 1500],
+});
 
-createFieldset('Молоко', 'radio', 'milk',
-     1, 2, 3);
+createFieldset({
+    legend: 'Сыр желтый',
+    inputType: 'radio',
+    inputName: 'yellow-cheese',
+    values: [300, 500, 700, 1000, 1500],
+});
 
-createFieldset('Сыворотка', 'radio', 'serum',
-    1, 2);
+createFieldset({
+    legend: 'Творог',
+    inputType: 'radio',
+    inputName: 'curd',
+    values: [500, 1000, 1500],
+});
 
-createFieldset('Адрес где можете забрать заказ', 'radio', 'address',
-    'Адрес доставки 1', 'Адрес доставки 2');
+createFieldset({
+    legend: 'Масло',
+    inputType: 'radio',
+    inputName: 'butter',
+    values: [300, 500, 700, 1000, 1500],
+});
+
+createFieldset({
+    legend: 'Молоко',
+    inputType: 'radio',
+    inputName: 'milk',
+    values: [1, 2, 3],
+});
+
+createFieldset({
+    legend: 'Сыворотка',
+    inputType: 'radio',
+    inputName: 'serum',
+    values: [1, 2],
+});
+
+createFieldset({
+    legend: 'Адрес где можете забрать заказ',
+    inputType: 'radio',
+    inputName: 'address',
+    values: ['Адрес доставки 1', 'Адрес доставки 2'],
+});
