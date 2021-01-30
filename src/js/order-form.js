@@ -3,7 +3,7 @@ const url = "https://course-project-kviatsinski-default-rtdb.firebaseio.com/orde
 const modalOrderForm = document.querySelector('.order-form__modal');
 const modalOrderFormWrap = modalOrderForm.querySelector('.order-form__wrap-modal');
 const paragraphModalOrder = modalOrderFormWrap.querySelector('.order-form__modal-paragraph')
-const table = document.createElement('table');
+const tableModalOrderForm = document.createElement('table');
 orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -51,18 +51,11 @@ orderForm.addEventListener('submit', async (e) => {
             return new Error(error)
         }
 
-        let nameInDatabase = false;
-
-        if (Object.keys(orders).length === 0) {
-            postOrder(order, url)
-        } else if (orders[userName.value]) {
+        if (orders[userName.value]) {
             modalOrderForm.style.display = 'block';
             paragraphModalOrder.textContent =
                 'Заказ с таким именем уже есть. Используйте пожалуста другое имя.';
-            nameInDatabase = true;
-        }
-
-        if (!nameInDatabase) {
+        } else {
             postOrder(order, url);
         }
 
@@ -70,7 +63,7 @@ orderForm.addEventListener('submit', async (e) => {
             order[userName.placeholder] = userName.value;
             order[userNote.placeholder] = userNote.value;
             try {
-                /*const response = await*/ fetch(
+                fetch(
                     url, {
                         method: 'Post',
                         headers: {
@@ -78,11 +71,10 @@ orderForm.addEventListener('submit', async (e) => {
                         },
                         body: JSON.stringify(data),
                     });
-                // const result = await response.json();
                 modalOrderForm.style.display = 'block';
                 paragraphModalOrder.textContent = 'Отлично! Заказ принят.';
 
-                createTableOrder(modalOrderFormWrap, data);
+                createDataTable(modalOrderFormWrap, data, tableModalOrderForm);
             } catch (error) {
                 modalOrderForm.style.display = 'block';
                 paragraphModalOrder.textContent =
@@ -97,11 +89,13 @@ function delet() {
     fetch(url, {method: 'DELETE',})
 }
 // delet ()
+
 document.body.addEventListener('click', (event) =>{
     const clickObj = event.target;
 
     if (clickObj !== modalOrderForm){
         modalOrderForm.style.display = 'none';
+        tableModalOrderForm.remove();
     }
 
     // if(clickObj !== btnGreetingOwner)
@@ -111,7 +105,7 @@ document.body.addEventListener('click', (event) =>{
     //     btnGreetingOwner.style.animationName = 'button-animation';
 })
 
-function createTableOrder(location, data){
+function createDataTable(location, data, table){
     for (let listPosition in data) {
             const tableRow = table.insertRow();
             const point = tableRow.insertCell();
