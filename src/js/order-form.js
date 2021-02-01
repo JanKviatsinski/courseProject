@@ -91,7 +91,6 @@ function delet() {
     fetch(url, {method: 'DELETE',})
 }
 // delet ()
-
 document.body.addEventListener('click', (event) =>{
     const clickObj = event.target;
     if (modalOrderForm.compareDocumentPosition(clickObj) === 2){

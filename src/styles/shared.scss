@@ -3,7 +3,7 @@
 }
 body{
   background: #5d3535;
-  color: white;
+  color: var(--font-color1);
   font-family: Montserrat, Raleway, sans-serif, 'Amatic SC', cursive;
 }
 
@@ -26,10 +26,38 @@ button {
   // бекграунд менятся. как от этого избавиться?
 }
 
+a {
+  text-decoration: none;
+}
+
 picture{
   width: 100%;
   height: 100%;
   position: absolute;
+}
+
+.btn--close {
+  position: relative;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: 50% 50%;
+  background: var(--background-color3);
+}
+
+.btn--close:after {
+  position: absolute;
+  content: "";
+  transform: translateX(-50%) rotate(45deg);;
+  min-width: 2rem;
+  border-bottom: 3px solid var(--background-color2);
+}
+
+.btn--close:before {
+  position: absolute;
+  transform: translateX(-50%) rotate(-45deg);
+  content: "";
+  min-width: 2rem;
+  border-bottom: 3px solid var(--background-color2);
 }
 
 

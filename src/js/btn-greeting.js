@@ -1,5 +1,5 @@
-'use strict'
-const greetingOwner = document.body.querySelector('.greeting-owner-wrap');
+
+const greetingOwner = document.body.querySelector('.main-header__greeting-wrap');
 greetingOwner.hidden = true;
 
 const btnGreetingOwner = document.body.querySelector('.main-header__btn--greeting');

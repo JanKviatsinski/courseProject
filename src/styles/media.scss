@@ -14,7 +14,7 @@
     order: 1;
   }
 
-  .contacts__phone-img {
+  .address__phone-img {
     display: none;
   }
 
@@ -33,8 +33,13 @@
     transform: scale(0.8, 1.5) rotate(45deg);
   }
 
-  .greeting-owner__bottom-btn-close {
+  .greeting__bottom-btn--close {
     display: block;
+  }
+
+  .app-main{
+    background-image:
+            url(../img/section-order-form-background-mobile.jpg);
   }
 }
 

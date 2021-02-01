@@ -1,13 +1,14 @@
+import {createLabel} from "./create-label";
+
 function createFieldset({legend, inputType, inputName, values}) {
-    const template = document.querySelector('#fieldset');
+    const template = document.querySelector('#form-template');
     const cloneNode = template.content.cloneNode( true);
+    const fieldset = cloneNode.querySelector('.order-form__fieldset');
+    const fieldsetLegend = fieldset.querySelector('legend');
 
-    const fieldsetLegend = cloneNode.querySelector('legend');
     fieldsetLegend.textContent = legend;
-
-    const labelsWrap = cloneNode.querySelector('.order-form__labels-wrap');
     for (let value of values) {
-        labelsWrap.append(createLabel ({
+        fieldset.append(createLabel ({
             value: value,
             type: inputType,
             name: inputName,
@@ -16,20 +17,6 @@ function createFieldset({legend, inputType, inputName, values}) {
 
     const formProducts = document.querySelector('.order-form__products');
     formProducts.append(cloneNode);
-}
-
-function createLabel ({value, type, name}) {
-    const label = document.createElement('label');
-    label.textContent = value;
-
-    const input = document.createElement('input');
-    input.type = type;
-    input.name = name;
-    input.value = value;
-
-    label.prepend(input);
-
-    return label;
 }
 
 createFieldset({

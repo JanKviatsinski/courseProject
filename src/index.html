@@ -22,31 +22,30 @@
                         Name Surname
                     </p>
 
-                    <button class="main-header__btn--greeting">
-                    </button>
+                    <button class="main-header__btn--greeting"></button>
                 </div>
 
                 <img class="main-header__logo" src="./img/logo.png" alt="logo">
 
-                <div class="main-header__contacts">
-                    <div class="contacts__wrap-phone-number">
-                        <img class="contacts__phone-img" src="./img/img-phone.svg" alt="img phone">
+                <address class="main-header__address">
+                    <div class="address__phone-number-wrap">
+                        <img class="address__phone-img" src="./img/img-phone.svg" alt="img phone">
 
-                        <p class="contacts__phone-number">
+                        <a href="tel: +375290000000" class="address__phone-number">
                             +375290000000
-                        </p>
+                        </a>
                     </div>
 
-                    <button class="contacts__btn--telegram">
-                        <img class="contacts__telegram-img" src="./img/telegram.svg" alt="telegram">
-                    </button>
-                </div>
+                    <a href="https://t.me/JanKviatsinki" class="address__telegram">
+                        <img class="address__telegram-img" src="./img/telegram.svg" alt="telegram">
+                    </a>
+                </address>
             </div>
 
-            <div class="greeting-owner-wrap">
-                <button class="greeting-owner__top-btn-close"></button>
+            <div class="main-header__greeting-wrap">
+                <button class="greeting__top-btn--close btn--close"></button>
 
-                <p class="main-header__greeting-owner">
+                <p class="main-header__greeting">
                     Привет, меня зовут Ян. Я фермер. Уже пять лет мы занимаемся молочкой. У нас свои коровы,
                     есть земля, сами заготавливаем коровам корма. Мне нравится то чем я занимаюсь, поэтому
                     получается вкусно и полезно, и это приятно. А еще приятно получать хорошие отзывы и
@@ -54,54 +53,51 @@
                     На этой страничке вы можете поближе познакомиться с нами и нашими коровками. По всем вопросам можно писать в телеграмм. Пока, удачи))
                 </p>
 
-                <button class="greeting-owner__bottom-btn-close"></button>
+                <button class="greeting__bottom-btn--close btn--close"></button>
             </div>
         </div>
     </header>
 </div>
 
-<main>
-    <section class="section-order-form">
-
-        <div class="section-order-form-wrap">
-            <header class="section-order-form__header">
-                <div class="section-order-form__header-wrap">
-                    <h2 class="section-order-form__title">
+<main class="app-main">
+        <div class="app-main-wrap">
+            <header class="app-main__header">
+                    <h2 class="app-main__title">
                         Здесь вы можете сделать заказ
                     </h2>
 
-                    <p class="section-order-form__paragraph">
+                    <p class="app-main__paragraph">
                         Для оформления заказа заполните необходимые поля и
                         нажмите кнопку "Заказать".
                     </p>
-                </div>
             </header>
 
             <form id="order-form" name="order-form">
-                <div class="order-form-wrap">
                     <div class="order-form__products">
                     </div>
 
                     <div class="order-form__form-controls">
-                    <textarea id="order-form__textarea"
-                              placeholder=" Замечания и предложения"></textarea>
+
+                        <label for="order-form__textarea"></label>
+
+                        <textarea id="order-form__textarea"
+                              placeholder="Замечания и предложения"></textarea>
 
                         <input class="order-form__user-name" type="text"
-                               autocomplete="off" placeholder=" Ваше имя">
+                               autocomplete="off" placeholder="Ваше имя">
 
                         <div class="order-form__buttons">
                             <button class="order-form__btn--reset"
                                     type="reset">
-                                <strong>Очистить форму</strong>
+                              Очистить форму
                             </button>
 
                             <button class="order-form__btn--submit"
                                     type="submit">
-                                <strong>Заказать</strong>
+                                Заказать
                             </button>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
 
@@ -111,22 +107,20 @@
             </p>
         </div>
     </div>
-    </section>
 </main>
 
 
 
-<template id="fieldset">
-    <fieldset>
+<template id="form-template">
+    <fieldset class="order-form__fieldset">
         <legend></legend>
-        <div class="order-form__labels-wrap">
-        </div>
     </fieldset>
 </template>
 
-<script src="main-header.js"></script>
-<script src="S_order-form.js"></script>
-<script src="order-form.js"></script>
+<script type="module" src="btn-greeting.js"></script>
+<script type="module" src="create-fieldset.js"></script>
+<script type="module" src="create-label.js"></script>
+<script type="module" src="order-form.js"></script>
 
 </body>
 </html>
