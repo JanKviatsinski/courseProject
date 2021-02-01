@@ -1,70 +1,68 @@
-const orderForm = document.querySelector('#order-form');
-const url = "https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json"
-const modalOrderForm = document.querySelector('.order-form__modal');
-const modalOrderFormWrap = modalOrderForm.querySelector('.order-form__wrap-modal');
-const paragraphModalOrder = modalOrderFormWrap.querySelector('.order-form__modal-paragraph')
-let tableModalOrderForm = document.createElement('table');
-orderForm.addEventListener('submit', async (e) => {
+const ORDER_FORM = document.querySelector('#order-form');
+const URL_ORDER = "https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json"
+const MODAL_ORDER_FORM = document.querySelector('.order-form__modal');
+const modalOrderFormWrap = MODAL_ORDER_FORM.querySelector('.order-form__wrap-modal');
+const PARAGRAPH_MODAL_ORDER = MODAL_ORDER_FORM.querySelector('.order-form__modal-paragraph')
+const TABLE_MODAL_ORDER_FORM = document.createElement('table');
+ORDER_FORM.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const userName =
-            orderForm.querySelector('.order-form__user-name');
-        const userNote =
-            orderForm.querySelector('textarea');
-        const inputs = document.getElementsByTagName('input');
-        const order = {};
+        const USER_NAME =
+            ORDER_FORM.querySelector('.order-form__user-name');
+        const USER_NOTE =
+            ORDER_FORM.querySelector('textarea');
+        const INPUTS = document.getElementsByTagName('input');
+        const ORDER = {};
 
         let productIsSelected = false;
 
-        for (let input of inputs) {
+        for (let input of INPUTS) {
             if (input.checked) {
                 let legendText = input.closest('fieldset').querySelector('legend').textContent;
-                 order[legendText] = input.value;
+                 ORDER[legendText] = input.value;
                 productIsSelected = true;
             }
         }
 
         if (!productIsSelected) {
-            // tableModalOrderForm.remove();
-            modalOrderForm.style.display = 'block';
-            paragraphModalOrder.textContent = 'Вы не выбрали ни одного продукта';
+            MODAL_ORDER_FORM.style.display = 'block';
+            PARAGRAPH_MODAL_ORDER.textContent = 'Вы не выбрали ни одного продукта';
             return false;
         }
 
         let orders;
 
         try {
-            const response = await fetch(url);
-            orders = await response.json();
-            let modifiedObjOrders = {};
+            const RESPONSE = await fetch(URL_ORDER);
+            orders = await RESPONSE.json();
+            const MODIFIED_ORDERS = {};
 
             for (let orderId in orders) {
-                modifiedObjOrders[orders[orderId][userName.placeholder]] = {...orders[orderId]};
-                modifiedObjOrders[orders[orderId][userName.placeholder]].id = orderId;
+                MODIFIED_ORDERS[orders[orderId][USER_NAME.placeholder]] = {...orders[orderId]};
+                MODIFIED_ORDERS[orders[orderId][USER_NAME.placeholder]].id = orderId;
             }
 
-            orders = modifiedObjOrders;
+            orders = MODIFIED_ORDERS;
         } catch (error) {
-            // tableModalOrderForm.remove();
-            modalOrderForm.style.display = 'block';
-            paragraphModalOrder.textContent =
+            MODAL_ORDER_FORM.style.display = 'block';
+            PARAGRAPH_MODAL_ORDER.textContent =
                 'Упс, что-то пошло не так. Попробуйте пожалуйста позже.';
             console.log('ОШИБКА', error)
             return new Error(error)
         }
 
-        if (orders[userName.value]) {
+        if (orders[USER_NAME.value]) {
             // tableModalOrderForm.remove();
-            modalOrderForm.style.display = 'block';
-            paragraphModalOrder.textContent =
+            MODAL_ORDER_FORM.style.display = 'block';
+            PARAGRAPH_MODAL_ORDER.textContent =
                 'Заказ с таким именем уже есть. Используйте пожалуста другое имя.';
         } else {
-            postOrder(order, url);
+            postOrder(ORDER, URL_ORDER);
         }
 
         async function postOrder(data, url) {
-            order[userName.placeholder] = userName.value;
-            order[userNote.placeholder] = userNote.value;
+            ORDER[USER_NAME.placeholder] = USER_NAME.value;
+            ORDER[USER_NOTE.placeholder] = USER_NOTE.value;
             try {
                 await fetch(
                     url, {
@@ -74,12 +72,12 @@ orderForm.addEventListener('submit', async (e) => {
                         },
                         body: JSON.stringify(data),
                     });
-                modalOrderForm.style.display = 'block';
-                paragraphModalOrder.textContent = 'Отлично! Заказ принят.';
-                createDataTable(modalOrderFormWrap, data, tableModalOrderForm);
+                MODAL_ORDER_FORM.style.display = 'flex';
+                PARAGRAPH_MODAL_ORDER.textContent = 'Отлично! Заказ принят.';
+                createDataTable(MODAL_ORDER_FORM, data, TABLE_MODAL_ORDER_FORM);
             } catch (error) {
-                modalOrderForm.style.display = 'block';
-                paragraphModalOrder.textContent =
+                MODAL_ORDER_FORM.style.display = 'block';
+                PARAGRAPH_MODAL_ORDER.textContent =
                     'Упс, что-то пошло не так. Попробуйте пожалуйста позже.';
                 console.log('ОШИБКА', error)
             }
@@ -88,15 +86,18 @@ orderForm.addEventListener('submit', async (e) => {
 )
 
 function delet() {
-    fetch(url, {method: 'DELETE',})
+    fetch(URL_ORDER, {method: 'DELETE',})
 }
 // delet ()
 document.body.addEventListener('click', (event) =>{
-    const clickObj = event.target;
-    if (modalOrderForm.compareDocumentPosition(clickObj) === 2){
-        modalOrderForm.style.display = 'none';
-        tableModalOrderForm.remove();
+    const CLICK_OBJ = event.target;
+
+    if (MODAL_ORDER_FORM.compareDocumentPosition(CLICK_OBJ) === 2){
+        MODAL_ORDER_FORM.style.display = 'none';
+        TABLE_MODAL_ORDER_FORM.remove();
     }
+
+
 
     // if(clickObj !== btnGreetingOwner)
     // greetingOwner.hidden = !greetingOwner.hidden;
@@ -109,11 +110,11 @@ function createDataTable(location, data, form) {
     form.innerHTML = '';
 
     for (let listPosition in data) {
-        const tableRow = form.insertRow();
-        const point = tableRow.insertCell();
-        const value = tableRow.insertCell();
-        point.textContent = listPosition;
-        value.textContent = data[listPosition];
+        const TABLE_ROW = form.insertRow();
+        const POINT = TABLE_ROW.insertCell();
+        const VALUE = TABLE_ROW.insertCell();
+        POINT.textContent = listPosition;
+        VALUE.textContent = data[listPosition];
     }
 
     location.append(form);

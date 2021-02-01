@@ -1,4 +1,4 @@
-import {createLabel} from "./create-label";
+import {createLabel} from "./create-label.js";
 
 function createFieldset({legend, inputType, inputName, values}) {
     const template = document.querySelector('#form-template');

@@ -1,15 +1,15 @@
 export {createLabel};
 
 function createLabel ({value, type, name}) {
-    const label = document.createElement('label');
-    label.textContent = value;
+    const LABEL = document.createElement('label');
+    LABEL.textContent = value;
 
-    const input = document.createElement('input');
-    input.type = type;
-    input.name = name;
-    input.value = value;
+    const INPUT = document.createElement('input');
+    INPUT.type = type;
+    INPUT.name = name;
+    INPUT.value = value;
 
-    label.prepend(input);
+    LABEL.prepend(INPUT);
 
-    return label;
+    return LABEL;
 }

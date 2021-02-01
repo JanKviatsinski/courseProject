@@ -25,7 +25,7 @@ function copyHTML(_cb) {
 }
 
 function copyJS(_cb) {
-    return src('src/js/*.js').pipe(dest('build'));
+    return src('src/js/*.js').pipe(dest('build/js'));
 }
 
 function transformSCSS() {
