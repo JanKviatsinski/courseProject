@@ -79,12 +79,15 @@
                     <div class="order-form__form-controls">
 
                         <label for="order-form__textarea"></label>
-
                         <textarea id="order-form__textarea"
                               placeholder="Замечания и предложения"></textarea>
 
-                        <input class="order-form__user-name" type="text"
-                               autocomplete="off" placeholder="Ваше имя">
+                        <label for="order-form__user-name"></label>
+                        <input class="order-form__user-name"
+                               id="order-form__user-name"
+                               type="text"
+                               autocomplete="off"
+                               placeholder="Ваше имя">
 
                         <div class="order-form__buttons">
                             <button class="order-form__btn--reset"
@@ -102,10 +105,9 @@
         </div>
 
         <div class="order-form__modal">
-<!--        <div class="order-form__wrap-modal">-->
             <p class="order-form__modal-paragraph">
             </p>
-<!--        </div>-->
+            <button class="order-form__btn--close-modal btn--close"></button>
     </div>
 </main>
 

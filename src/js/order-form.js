@@ -1,64 +1,39 @@
+import {showModal} from "./show-modal.js";
+import {addProductsToOrder} from "./add-products-to-order.js";
+import {productsValidation} from "./products-validation.js";
+import {readingAllOrders} from "./reading-all-orders.js";
+export const URL_ORDER = "https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json"
+
 const ORDER_FORM = document.querySelector('#order-form');
-const URL_ORDER = "https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json"
-const MODAL_ORDER_FORM = document.querySelector('.order-form__modal');
-const modalOrderFormWrap = MODAL_ORDER_FORM.querySelector('.order-form__wrap-modal');
-const PARAGRAPH_MODAL_ORDER = MODAL_ORDER_FORM.querySelector('.order-form__modal-paragraph')
+export const MODAL_ORDER_FORM = document.querySelector('.order-form__modal');
+export const PARAGRAPH_MODAL_ORDER = MODAL_ORDER_FORM.querySelector('.order-form__modal-paragraph')
 const TABLE_MODAL_ORDER_FORM = document.createElement('table');
+export const ORDER ={};
+export const USER_NAME = ORDER_FORM.querySelector('.order-form__user-name');
+export const USER_NOTE = ORDER_FORM.querySelector('textarea');
+
 ORDER_FORM.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const USER_NAME =
-            ORDER_FORM.querySelector('.order-form__user-name');
-        const USER_NOTE =
-            ORDER_FORM.querySelector('textarea');
-        const INPUTS = document.getElementsByTagName('input');
-        const ORDER = {};
+    await addProductsToOrder();
 
-        let productIsSelected = false;
+    let productIsChecked = productsValidation();
 
-        for (let input of INPUTS) {
-            if (input.checked) {
-                let legendText = input.closest('fieldset').querySelector('legend').textContent;
-                 ORDER[legendText] = input.value;
-                productIsSelected = true;
-            }
-        }
+    if(!productIsChecked){
+        showModal('Вы не выбрали ни одного продукта');
+        return false;
+    }
 
-        if (!productIsSelected) {
-            MODAL_ORDER_FORM.style.display = 'block';
-            PARAGRAPH_MODAL_ORDER.textContent = 'Вы не выбрали ни одного продукта';
-            return false;
-        }
+        let orders = await readingAllOrders();
 
-        let orders;
+if(orders === null){
+    postOrder(ORDER, URL_ORDER);
+}
 
-        try {
-            const RESPONSE = await fetch(URL_ORDER);
-            orders = await RESPONSE.json();
-            const MODIFIED_ORDERS = {};
-
-            for (let orderId in orders) {
-                MODIFIED_ORDERS[orders[orderId][USER_NAME.placeholder]] = {...orders[orderId]};
-                MODIFIED_ORDERS[orders[orderId][USER_NAME.placeholder]].id = orderId;
-            }
-
-            orders = MODIFIED_ORDERS;
-        } catch (error) {
-            MODAL_ORDER_FORM.style.display = 'block';
-            PARAGRAPH_MODAL_ORDER.textContent =
-                'Упс, что-то пошло не так. Попробуйте пожалуйста позже.';
-            console.log('ОШИБКА', error)
-            return new Error(error)
-        }
-
-        if (orders[USER_NAME.value]) {
-            // tableModalOrderForm.remove();
-            MODAL_ORDER_FORM.style.display = 'block';
-            PARAGRAPH_MODAL_ORDER.textContent =
-                'Заказ с таким именем уже есть. Используйте пожалуста другое имя.';
-        } else {
+        orders[USER_NAME.value] ? showModal(
+            'Заказ с таким именем уже есть. Используйте пожалуйста другое имя.') :
             postOrder(ORDER, URL_ORDER);
-        }
+
 
         async function postOrder(data, url) {
             ORDER[USER_NAME.placeholder] = USER_NAME.value;
@@ -74,12 +49,14 @@ ORDER_FORM.addEventListener('submit', async (e) => {
                     });
                 MODAL_ORDER_FORM.style.display = 'flex';
                 PARAGRAPH_MODAL_ORDER.textContent = 'Отлично! Заказ принят.';
+                PARAGRAPH_MODAL_ORDER.style.marginBottom =  1 + 'em';
                 createDataTable(MODAL_ORDER_FORM, data, TABLE_MODAL_ORDER_FORM);
             } catch (error) {
                 MODAL_ORDER_FORM.style.display = 'block';
                 PARAGRAPH_MODAL_ORDER.textContent =
                     'Упс, что-то пошло не так. Попробуйте пожалуйста позже.';
-                console.log('ОШИБКА', error)
+                PARAGRAPH_MODAL_ORDER.style.marginBottom = '0';
+                console.log('ОШИБКА', error);
             }
         }
     }
@@ -106,20 +83,19 @@ document.body.addEventListener('click', (event) =>{
     //     btnGreetingOwner.style.animationName = 'button-animation';
 })
 
-function createDataTable(location, data, form) {
-    form.innerHTML = '';
+function createDataTable(location, data, table) {
+    table.innerHTML = '';
 
     for (let listPosition in data) {
-        const TABLE_ROW = form.insertRow();
+        const TABLE_ROW = table.insertRow();
         const POINT = TABLE_ROW.insertCell();
         const VALUE = TABLE_ROW.insertCell();
         POINT.textContent = listPosition;
         VALUE.textContent = data[listPosition];
     }
 
-    location.append(form);
-
-    // const tablePreviousSibling = table.previousElementSibling;
-    // tablePreviousSibling.style.marginBottom = 1 + 'rem';
+    location.append(table);
 }
+
+// export {PARAGRAPH_MODAL_ORDER};
 

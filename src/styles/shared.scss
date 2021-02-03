@@ -1,6 +1,8 @@
 :root{
-  font-size: clamp(15px, 2vw, 22px);
+  font-size: clamp(10px,  62.5% , 14px);
+  //font-size: clamp(15px, 2vw, 22px);
 }
+
 body{
   background: #5d3535;
   color: var(--font-color1);
@@ -16,7 +18,7 @@ body{
 button {
   cursor: pointer;
   font-family: Montserrat, Raleway, sans-serif;
-  font-size: var(--font-size0);
+  font-size: var(--font-size1);
   background: none;
   padding: 0;
   outline: none;
@@ -38,8 +40,8 @@ picture{
 
 .btn--close {
   position: relative;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+  min-width: 1.5em;
+  min-height: 1.5em;
   border-radius: 50% 50%;
   background: var(--background-color3);
 }
@@ -48,7 +50,7 @@ picture{
   position: absolute;
   content: "";
   transform: translateX(-50%) rotate(45deg);;
-  min-width: 2rem;
+  min-width: 1em;
   border-bottom: 3px solid var(--background-color2);
 }
 
@@ -56,7 +58,7 @@ picture{
   position: absolute;
   transform: translateX(-50%) rotate(-45deg);
   content: "";
-  min-width: 2rem;
+  min-width: 1em;
   border-bottom: 3px solid var(--background-color2);
 }
 

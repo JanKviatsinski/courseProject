@@ -20,17 +20,17 @@
 .app-main__header {
   background: var(--background-color1);
   border-radius: var(--border-radius1);
-  margin-bottom: 1rem;
+  margin-bottom: 2em;
   padding: var(--indentation1);
 }
 
 .app-main__title {
-  margin-bottom: 1rem;
-  font-size: var(--font-size2);
+  margin-bottom: 0.6em;
+  font-size: var(--font-size3);
 }
 
 .app-main__paragraph {
-  font-size: var(--font-size1);
+  font-size: var(--font-size2);
 }
 
 #order-form {
@@ -38,24 +38,24 @@
   display: flex;
   flex-direction: column;
   border-radius: var(--border-radius1);
-  font-size: var(--font-size1);
+  font-size: var(--font-size2);
   padding: var(--indentation1);
+}
+
+.order-form__products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  grid-gap: 1.2em;
+  margin-bottom: 1em;
 
   fieldset {
     border-radius: var(--border-radius1);
   }
 
   legend {
-    margin-bottom: 0.4rem;
-    padding: 0.4rem;
+    margin-bottom: 0.2em;
+    padding: 0.2em;
   }
-}
-
-.order-form__products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: var(--indentation1);
-  margin-bottom: 1rem;
 
   > *:last-child {
     margin: 0;
@@ -63,7 +63,7 @@
 }
 
 .order-form__fieldset {
-  padding: 0.5rem;
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
 
@@ -72,12 +72,12 @@
   }
 
   label {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2em;
 
     input {
-      min-width: 1rem;
-      min-height: 1rem;
-      margin-right: 0.5rem;
+      min-width: 1.4em;
+      min-height: 1.4em;
+      margin-right: 0.5em;
     }
   }
 }
@@ -90,85 +90,102 @@
 }
 
 #order-form__textarea {
+  font-size: var(--font-size1);
   resize: none;
   outline: none;
   border: none;
-  width: 15rem;
-  height: 50px;
+  width: 70vw;
+  max-width: 70%;
+  height: 2em;
   border-radius: var(--border-radius1);
-  margin-bottom: 1rem;
-  font-size: var(--font-size0);
-  padding: 0.5rem;
+  padding: 0.4em;
+  margin-bottom: 0.8em;
 }
 
 .order-form__user-name {
   outline: none;
   border: none;
-  width: 15rem;
-  height: 2rem;
+  width: 70vw;
+  max-width: 8em;
+  height: 2em;
   border-radius: var(--border-radius1);
-  font-size: var(--font-size1);
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  font-size: var(--font-size2);
+  padding: 0.4em;
+  margin-bottom: 0.8em;
 }
 
 .order-form__buttons {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: -15px;
-  margin-right: -30px;
-  //кнопки разместить по центру если меньше 350
+  margin-bottom: -20px;
+  margin-right: -20px;
+  justify-content: center;
 }
 
 .order-form__btn--reset,
 .order-form__btn--submit {
   background: var(--background-color2);
   border-radius: var(--border-radius1);
-  margin-bottom: 15px;
-  margin-right: 30px;
-  padding: 0.5rem;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 0.4em;
 }
 
 .order-form__modal{
   background: var(--background-color3);
   font-size: var(--font-size1);
   font-family: var(--font-family2);
-  border-radius: var(--border-radius1);
   display: none;
   position: fixed;
-  top: 0.5rem;
-  width: 76vw;
-  max-width: 54rem;
+  top: 0;
+  width: 100%;
+  max-width: calc(1440px - var(--indentation1) * 2);
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: var(--indentation1);
+  box-sizing: border-box;
 
-  > :not(:last-child){
-    margin-bottom: 1rem;
-  }
+  //> :not(:last-child){
+  //  margin-bottom: 1rem;
+  //}
 
   table, th, td  {
-    font-size: 0.9rem;
+    //font-size: var(--font-size1);
     //width: 100%;
     //max-width: 54rem;
     // если в таблице есть длинное слово то
     //то верстка ламается. как исправит
     border: solid 1px;
     border-color: var(--border-color1);
-    border-radius: var(--border-radius1);/*не работает почему*/
+    //border-radius: var(--border-radius1);
     border-collapse: collapse;
-    padding: 0.4rem;
+    padding: 0.3em;
   }
 
   th, td{
     display: table-cell;
     vertical-align: top;
+  }
+
+  table td:first-child{
     //width: 100px;
-    max-width: 8rem;
-    min-width: 8rem;
+    max-width: 9em;
+    //min-width: 9em;
+  }
+
+  table td:last-child{
+    word-break: break-word;
   }
 }
+
+.order-form__btn--close-modal{
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+  border-radius: 0 0 50% 50%;
+}
+
 
 
 

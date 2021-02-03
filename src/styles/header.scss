@@ -17,11 +17,13 @@
   width: 1440px;
   position: relative;
   padding: var(--indentation1);
+  padding-bottom: 0.8em;
   box-sizing: border-box;
   font-family: var(--font-family1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 3.6rem;
 }
 
 .main-header_main-information {
@@ -29,12 +31,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-right: -1rem;
-  margin-bottom: -0.8rem;
+  margin-right: -10px;
+  margin-bottom: -1em;
 
   > * {
-    margin-right: 1rem;
-    margin-bottom: 1.8rem;
+    margin-right: 10px;
+    margin-bottom: 1em;
   }
 }
 
@@ -45,19 +47,17 @@
 }
 
 .main-header__photo-owner {
-  max-width: 10rem;
+  max-width: 5em;
   border-radius: 50%;
 }
 
 .main-header__name-owner {
-  font-size: var(--font-size4);
-  letter-spacing: 1.5px;
+  letter-spacing: 0.1em;
 }
 
 .main-header__btn--greeting {
   position: relative;
-  padding: 0.8rem;/*падинг не увеличил зону кликабельности
-  когда кнопка в статике*/
+  padding: 0.4em;
   border-right: 3px solid var(--background-color2);
   border-bottom: 3px solid var(--background-color2);
   transform: skew(10deg, 10deg);
@@ -71,15 +71,15 @@
 .main-header__btn--greeting:after {
   position: absolute;
   content: "";
-  width: 1rem;
-  height: 1rem;
+  width: 0.6em;
+  height: 0.6em;
   border-right: 3px solid var(--background-color2);
   border-bottom: 3px solid var(--background-color2);
   transform: translateX(-70%) translateY(-70%);
 }
 
 .main-header__logo {
-  max-width: 6rem;
+  max-width: 3em;
 }
 
 .main-header__address {
@@ -91,30 +91,30 @@
 .address__phone-number-wrap {
   display: flex;
   flex-direction: row;
-  margin-right: 1rem;
+  margin-right: 0.8em;
 }
 
 .address__phone-number {
   display: flex;
   align-items: center;
-  letter-spacing: 1.5px;
-  font-size: var(--font-size4);
+  letter-spacing: 0.1em;
+  font-size: var(--font-size5);
   color: var(--font-color1);
 }
 
 .address__telegram-img,
 .address__phone-img {
-  max-width: 2.6rem;
+  max-width: 0.8em;
 }
 
 .address__phone-img {
-  margin-right: 1rem;
+  margin-right: 0.4em;
 }
 
 .main-header__greeting-wrap {
   width: 100%;
   padding: var(--indentation1);
-  padding-top: 0.5rem;
+  padding-top: 0;
   box-sizing: border-box;
   position: absolute;
   transform: translateY(-3rem);
