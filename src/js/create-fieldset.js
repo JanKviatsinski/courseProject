@@ -1,7 +1,8 @@
 import {createLabel} from "./create-label.js";
+export const FORM_PRODUCTS = document.querySelector('.order-form__products');
+const template = document.querySelector('#form-template');
 
 function createFieldset({legend, inputType, inputName, values}) {
-    const template = document.querySelector('#form-template');
     const cloneNode = template.content.cloneNode( true);
     const fieldset = cloneNode.querySelector('.order-form__fieldset');
     const fieldsetLegend = fieldset.querySelector('legend');
@@ -15,8 +16,7 @@ function createFieldset({legend, inputType, inputName, values}) {
         }));
     }
 
-    const formProducts = document.querySelector('.order-form__products');
-    formProducts.append(cloneNode);
+    FORM_PRODUCTS.append(cloneNode);
 }
 
 createFieldset({
