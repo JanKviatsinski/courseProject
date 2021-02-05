@@ -1,14 +1,15 @@
-import {USER_NAME} from "./order-submit.js";
-import {FORM_PRODUCTS} from "./create-fieldset.js";
-const INPUTS = FORM_PRODUCTS.querySelectorAll('input');
+import {ORDER_FORM} from "./order-submit.js";
 
-// USER_NAME.value = localStorage.name;
+const INPUTS = ORDER_FORM.querySelectorAll('input');
+
 // localStorage.clear();
-// const ADDRESSES = FORM_PRODUCTS.getElementsByName('address');
 for (let input of INPUTS){
     if (input.value === localStorage[input.name]){
         input.checked = "checked";
-        // input.value = localStorage[input.name];
+    }
+
+    if(localStorage[input.name]){
+        input.value = localStorage[input.name];
     }
 }
 
