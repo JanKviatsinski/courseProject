@@ -151,14 +151,8 @@
   //}
 
   table, th, td  {
-    //font-size: var(--font-size1);
-    //width: 100%;
-    //max-width: 54rem;
-    // если в таблице есть длинное слово то
-    //то верстка ламается. как исправит
     border: solid 1px;
     border-color: var(--border-color1);
-    //border-radius: var(--border-radius1);
     border-collapse: collapse;
     padding: 0.3em;
   }

@@ -19,14 +19,20 @@ ORDER_FORM.addEventListener('submit', async (evt) => {
         const PRODUCT_IS_CHECKED = productValidation(ORDER);
         const NAME_IS_CHECKED = nameValidation(ORDER);
 
-    if (!(PRODUCT_IS_CHECKED && NAME_IS_CHECKED)) {
-        return false;
-    }
+        if (!(PRODUCT_IS_CHECKED && NAME_IS_CHECKED)) {
+            return false;
+        }
+
         const ORDERS = await readingAllOrders();
 
-        if (ORDERS === null) {
-            postOrder(ORDER, URL_ORDER);
-            return false;/*nado li?*/
+        switch (ORDERS) {
+            case null:
+                postOrder(ORDER, URL_ORDER);
+                return false;
+                // break; ругается
+            case false:
+                return false;
+                // break;
         }
 
         const NAME_IS_IN_ORDER = await searchNameInOrders(USER_NAME, ORDERS);
@@ -48,7 +54,14 @@ function delet() {
 // delet ();
 
 
-
+// if (ORDERS === null) {
+//             postOrder(ORDER, URL_ORDER);
+//             return false;
+//         }
+//
+// if (!ORDERS) {
+//     return false;/*nado li?*/
+// }
 
 
 

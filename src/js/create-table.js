@@ -1,4 +1,4 @@
-export function createDataTable(location, data, table) {
+export function createDataTable({location, data, table}) {
     table.innerHTML = '';
 
     for (let listPosition in data) {
