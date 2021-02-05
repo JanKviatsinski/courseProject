@@ -1,5 +1,5 @@
 import {GREETING, BTN_GREETING} from "./btn-greeting.js";
-// import {PARAGRAPH_MODAL_ORDER} from "./order-form.js";
+// import {PARAGRAPH_MODAL_ORDER} from "./order-submit.js";
 
 const BUTTONS_CLOSE = document.querySelectorAll('.btn--close');
 for (let btn of BUTTONS_CLOSE){

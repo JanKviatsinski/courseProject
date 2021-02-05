@@ -1,4 +1,4 @@
-import {MODAL_ORDER_FORM, PARAGRAPH_MODAL_ORDER} from "./order-form.js";
+import {MODAL_ORDER_FORM, PARAGRAPH_MODAL_ORDER} from "./order-submit.js";
 
 export function showModal (titleText){
     MODAL_ORDER_FORM.style.display = 'block';

@@ -1,5 +1,5 @@
-// import {ORDER_FORM} from "./order-form.js";
-// import {order} from "./order-form.js";
+// import {ORDER_FORM} from "./order-submit.js";
+// import {order} from "./order-submit.js";
 //
 // const BTN_RESET = ORDER_FORM.querySelector('.order-form__btn--reset');
 //
