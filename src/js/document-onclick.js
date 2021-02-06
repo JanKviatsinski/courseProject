@@ -1,4 +1,4 @@
-import {MODAL_ORDER_FORM} from "./order-submit.js";
+import {MODAL_ORDER_FORM} from "./order.js";
 import {TABLE_MODAL_ORDER_FORM} from "./post-order.js";
 
 document.addEventListener('click', (evt) => {

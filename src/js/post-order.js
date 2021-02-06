@@ -1,6 +1,6 @@
 import {showModal} from "./show-modal.js";
 import {createDataTable} from "./create-table.js";
-import {MODAL_ORDER_FORM, PARAGRAPH_MODAL_ORDER} from "./order-submit.js";
+import {MODAL_ORDER_FORM, PARAGRAPH_MODAL_ORDER} from "./order.js";
 
 export const TABLE_MODAL_ORDER_FORM = document.createElement('table');
 

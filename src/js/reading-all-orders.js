@@ -1,10 +1,9 @@
-import {URL_ORDER} from "./order-submit.js";
+import {URL_ORDER_GET} from "./order.js";
 import {showModal} from "./show-modal.js";
 
-export async function readingAllOrders (){
-
+export async function readingAllOrders (urlGet){
     try {
-        const RESPONSE = await fetch(URL_ORDER);
+        const RESPONSE = await fetch(urlGet);
 
         const ORDERS = await RESPONSE.json();
         return ORDERS;
@@ -13,5 +12,4 @@ export async function readingAllOrders (){
         console.log('ОШИБКА', error);
         return false;
     }
-
 }

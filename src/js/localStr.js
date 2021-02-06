@@ -1,6 +1,6 @@
-import {ORDER_FORM} from "./order-submit.js";
+import {orderForm} from "./order.js";
 
-const INPUTS = ORDER_FORM.querySelectorAll('input');
+const INPUTS = orderForm.querySelectorAll('input');
 
 // localStorage.clear();
 for (let input of INPUTS){

@@ -1,4 +1,4 @@
-import {MODAL_ORDER_FORM, PARAGRAPH_MODAL_ORDER} from "./order-submit.js";
+import {MODAL_ORDER_FORM, PARAGRAPH_MODAL_ORDER} from "./order.js";
 
 export function showModal (titleText){
     MODAL_ORDER_FORM.style.display = 'flex';
