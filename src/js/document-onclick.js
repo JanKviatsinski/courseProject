@@ -1,11 +1,11 @@
-import {MODAL_ORDER_FORM} from "./order.js";
-import {TABLE_MODAL_ORDER_FORM} from "./post-order.js";
+import {modalOrderForm} from "./order.js";
+import {tableModalOrder} from "./order.js";
 
 document.addEventListener('click', (evt) => {
     const CLICK_OBJ = evt.target;
 
-    if (MODAL_ORDER_FORM.compareDocumentPosition(CLICK_OBJ) === 2) {
-        MODAL_ORDER_FORM.style.display = 'none';
-        TABLE_MODAL_ORDER_FORM.remove();
+    if (modalOrderForm.compareDocumentPosition(CLICK_OBJ) === 2) {
+        modalOrderForm.style.display = 'none';
+        tableModalOrder.remove();
     }
 })

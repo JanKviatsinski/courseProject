@@ -1,9 +1,9 @@
 import {orderForm} from "./order.js";
 
-const INPUTS = orderForm.querySelectorAll('input');
+const inputs = orderForm.querySelectorAll('input');
 
 // localStorage.clear();
-for (let input of INPUTS){
+for (let input of inputs){
     if (input.value === localStorage[input.name]){
         input.checked = "checked";
     }

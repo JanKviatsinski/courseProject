@@ -1,66 +1,94 @@
 import {showModal} from "./show-modal.js";
-import {searchNameInOrders} from "./search-name-in-orders.js";
-import {productsValidation, nameValidation} from "./validation.js";
-import {readingAllOrders} from "./reading-all-orders.js";
-import {postOrder} from "./post-order.js";
+import {productsValidation, nameValidation, duplicateValidation} from "./validation.js";
+import {reading} from "./reading.js";
+import {post} from "./post.js";
 import {addDataToLocalStr} from "./add-data-to-localStr.js";
+import {createDataTable} from "./create-table.js";
 
+export const tableModalOrder = document.createElement('table');
 export const URL_ORDER_GET = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
+const URL_ORDER_POST = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
 export const orderForm = document.querySelector('#order-form');
-// const BTN_RESET = ORDER_FORM.querySelector('.order-form__btn--reset');
-export const MODAL_ORDER_FORM = document.querySelector('.order-form__modal');
-export const PARAGRAPH_MODAL_ORDER = MODAL_ORDER_FORM.querySelector('.order-form__modal-paragraph')
-export let ORDER = {};
-export const USER_NAME = orderForm.querySelector('.order-form__user-name');
+export const modalOrderForm = document.querySelector('.order-form__modal');
+export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph')
+export let order = localStorage;
+export const userName = orderForm.querySelector('.order-form__user-name');
+const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
+console.log(order);
 
 orderForm.addEventListener('change', (evt) => {
     evt.preventDefault();
     const CLICK_OBJ = evt.target;
-    ORDER[CLICK_OBJ.name] = CLICK_OBJ.value;
-
+    order[CLICK_OBJ.name] = CLICK_OBJ.value;
+    /*добавить сторедж в ордер*/
     addDataToLocalStr(CLICK_OBJ.name, CLICK_OBJ.value);
-
 })
 
 orderForm.addEventListener('submit', async (evt) => {
-    evt.preventDefault();
+        evt.preventDefault();
 
-    const nameIsChecked = nameValidation(ORDER);
-    const productsIsChecked = productsValidation(orderForm);
+        const nameIsChecked = nameValidation(order);
+        const productsIsChecked = productsValidation(orderForm);
 
-    if (!productsIsChecked) {
-        showModal('Вы не выбрали ни одного продукта');
-        return false;
-    }
+        if (!productsIsChecked) {
+            showModal('Вы не выбрали ни одного продукта');
+            return false;
+        }
 
-    if (!nameIsChecked) {
-        showModal('Нужно обязательно ввести имя.');
-        return false;
-    }
+        if (!nameIsChecked) {
+            showModal('Нужно обязательно ввести имя.');
+            return false;
+        }
 
-        const orders = await readingAllOrders();
+        const orders = await (await reading(URL_ORDER_GET)).json();
 
         switch (orders) {
             case null:
-                postOrder(ORDER, URL_ORDER_GET);
+                await post(order, URL_ORDER_POST);
+                console.log('нет заказов')
+                showModal('Отлично! Заказ принят.');
+
+                paragraphModalOrder.style.marginBottom = '1em';
+
+                createDataTable({
+                    location: modalOrderForm,
+                    data: order,
+                    table: tableModalOrder,
+                });
                 return false;
-                // break; ругается
             case false:
                 return false;
-                // break;
         }
 
-        const NAME_IS_IN_ORDER = await searchNameInOrders(USER_NAME, orders);
+        const isDuplicate = await duplicateValidation(userName.value, orders);
 
-        NAME_IS_IN_ORDER ? showModal('Заказ с таким именем уже есть. Используйте пожалуста' +
-            ' другое имя.') : postOrder(ORDER, URL_ORDER_GET);
+        if (isDuplicate) {
+            showModal('Заказ с таким именем уже есть. Используйте пожалуста' +
+                ' другое имя.')
+        } else {
+            await post(order, URL_ORDER_POST);
+            console.log('есть')
+            showModal('Отлично! Заказ принят.');
+
+            paragraphModalOrder.style.marginBottom = '1em';
+
+            createDataTable({
+                location: modalOrderForm,
+                data: order,
+                table: tableModalOrder,
+            });
+        }
     }
 )
 
 orderForm.addEventListener('reset', () => {
-    ORDER = {};
+    order = {};
+    console.log(order);
 })
 
+btnCloseModalOrder.addEventListener('click',() => {
+    modalOrderForm.style.display = 'none';
+})
 
 function delet() {
     fetch(URL_ORDER_GET, {method: 'DELETE',})
@@ -68,15 +96,6 @@ function delet() {
 
 // delet ();
 
-
-// if (ORDERS === null) {
-//             postOrder(ORDER, URL_ORDER);
-//             return false;
-//         }
-//
-// if (!ORDERS) {
-//     return false;/*nado li?*/
-// }
 
 
 
