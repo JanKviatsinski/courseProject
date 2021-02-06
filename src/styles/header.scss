@@ -17,13 +17,13 @@
   width: 1440px;
   position: relative;
   padding: var(--indentation1);
+  font-size: 3.6rem;
   padding-bottom: 0.8em;
   box-sizing: border-box;
   font-family: var(--font-family1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 3.6rem;
 }
 
 .main-header_main-information {
@@ -94,15 +94,7 @@
   margin-right: 0.8em;
 }
 
-.address__phone-number {
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.1em;
-  font-size: var(--font-size5);
-  color: var(--font-color1);
-}
-
-.address__telegram-img,
+.main-header__telegram-img,
 .address__phone-img {
   max-width: 0.8em;
 }

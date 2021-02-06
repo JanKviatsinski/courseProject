@@ -1,15 +1,15 @@
-import {orderForm} from "./order.js";
-
+// import {orderForm} from "./order.js";
+//
 // orderForm.addEventListener('change', (evt) => {
 //     evt.preventDefault();
-//     const CLICK_OBJ = evt.target;
+//     const clickObj = evt.target;
 //
-//     if ((CLICK_OBJ.type === 'radio' || CLICK_OBJ.type === 'checkbox') && CLICK_OBJ.name !== 'address'){
+//     if ((clickObj.type === 'radio' || clickObj.type === 'checkbox') && clickObj.name !== 'address'){
 //         productsIsChecked = true;
 //     }
 // })
 
-let productsIsChecked = true;/*изменить на фолс*/
+let productsIsChecked = false;/*изменить на фолс*/
 
 export function productsValidation(){
     return productsIsChecked;

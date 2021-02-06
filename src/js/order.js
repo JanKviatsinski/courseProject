@@ -1,27 +1,23 @@
 import {showModal} from "./show-modal.js";
 import {productsValidation, nameValidation, duplicateValidation} from "./validation.js";
-import {reading} from "./reading.js";
-import {post} from "./post.js";
-import {addDataToLocalStr} from "./add-data-to-localStr.js";
+import {saveOrder, getAllOrders} from "./services.js";
 import {createDataTable} from "./create-table.js";
+import {getFromStorage, addDataToLocalStr} from "./storage.js";
 
 export const tableModalOrder = document.createElement('table');
-export const URL_ORDER_GET = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
-const URL_ORDER_POST = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
 export const orderForm = document.querySelector('#order-form');
 export const modalOrderForm = document.querySelector('.order-form__modal');
 export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph')
-export let order = localStorage;
+export let order = getFromStorage();
 export const userName = orderForm.querySelector('.order-form__user-name');
 const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
-console.log(order);
 
 orderForm.addEventListener('change', (evt) => {
     evt.preventDefault();
-    const CLICK_OBJ = evt.target;
-    order[CLICK_OBJ.name] = CLICK_OBJ.value;
-    /*добавить сторедж в ордер*/
-    addDataToLocalStr(CLICK_OBJ.name, CLICK_OBJ.value);
+    const {name, value} = evt.target;
+    console.log(name, value)
+    order[name] = value;
+    addDataToLocalStr(name, value);
 })
 
 orderForm.addEventListener('submit', async (evt) => {
@@ -40,11 +36,11 @@ orderForm.addEventListener('submit', async (evt) => {
             return false;
         }
 
-        const orders = await (await reading(URL_ORDER_GET)).json();
+        const orders = await (await getAllOrders()).json();
 
         switch (orders) {
             case null:
-                await post(order, URL_ORDER_POST);
+                await saveOrder(order, URL_ORDER_POST);
                 console.log('нет заказов')
                 showModal('Отлично! Заказ принят.');
 
@@ -66,7 +62,7 @@ orderForm.addEventListener('submit', async (evt) => {
             showModal('Заказ с таким именем уже есть. Используйте пожалуста' +
                 ' другое имя.')
         } else {
-            await post(order, URL_ORDER_POST);
+            await saveOrder(order);
             console.log('есть')
             showModal('Отлично! Заказ принят.');
 
@@ -83,18 +79,22 @@ orderForm.addEventListener('submit', async (evt) => {
 
 orderForm.addEventListener('reset', () => {
     order = {};
-    console.log(order);
 })
 
 btnCloseModalOrder.addEventListener('click',() => {
     modalOrderForm.style.display = 'none';
 })
 
-function delet() {
-    fetch(URL_ORDER_GET, {method: 'DELETE',})
-}
+document.addEventListener('click', (evt) => {
+    const clickObj = evt.target;
 
-// delet ();
+    if (modalOrderForm.compareDocumentPosition(clickObj) === 2) {
+        modalOrderForm.style.display = 'none';
+        tableModalOrder.remove();
+    }
+})
+
+
 
 
 

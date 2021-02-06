@@ -31,13 +31,15 @@
                     <div class="address__phone-number-wrap">
                         <img class="address__phone-img" src="./img/img-phone.svg" alt="img phone">
 
-                        <a href="tel: +375290000000" class="address__phone-number">
+                        <a href="tel: +375290000000"
+                           class=" main-header__phone-number phone-number">
                             +375290000000
                         </a>
                     </div>
 
-                    <a href="https://t.me/JanKviatsinki" class="address__telegram">
-                        <img class="address__telegram-img" src="./img/telegram.svg" alt="telegram">
+                    <a href="https://t.me/JanKviatsinki" class="main-header__telegram">
+                        <img class="main-header__telegram-img telegram-img" src="./img/telegram.svg"
+                             alt="telegram">
                     </a>
                 </address>
             </div>
@@ -109,9 +111,33 @@
         <div class="order-form__modal">
             <p class="order-form__modal-paragraph">
             </p>
+
             <button class="order-form__btn--close-modal btn--close"></button>
     </div>
 </main>
+
+<footer class="footer">
+    <div class="footer-wrap">
+        <p class="main-header__name-owner">
+            Name Surname
+        </p>
+
+        <address class="footer__address">
+            <a href="tel: +375290000000"
+               class="footer__phone-number phone-number">
+                +375290000000
+            </a>
+
+            <a href="https://t.me/JanKviatsinki" class="footer__telegram">
+                <img class="footer__telegram-img telegram-img" src="./img/telegram.svg" alt="telegram">
+            </a>
+        </address>
+
+        <p class="footer__author">
+            <time datetime="2021">© 2021 Happy farm</time>
+        </p>
+    </div>
+</footer>
 
 <template id="form-template">
     <fieldset class="order-form__fieldset">
@@ -120,13 +146,12 @@
 </template>
 
 <script type="module" src="js/index.js"></script>
-<script type="module" src="js/order.js"></script>
+<!--<script type="module" src="js/order.js"></script>-->
 <!--<script type="module" src="js/greeting.js"></script>-->
-<script type="module" src="./js/create-fieldset.js"></script>
-<script type="module" src="./js/create-label.js"></script>
-<script type="module" src="js/on-change.js"></script><!--не откл-->
-<script type="module" src="js/document-onclick.js"></script><!--не откл-->
-<script type="module" src="js/storage.js"></script><!--не откл-->
+<!--<script type="module" src="./js/create-fieldset.js"></script>-->
+<!--<script type="module" src="./js/create-label.js"></script>-->
+<!--<script type="module" src="js/document-onclick.js"></script>&lt;!&ndash;не откл&ndash;&gt;-->
+<!--<script type="module" src="js/storage.js"></script>&lt;!&ndash;не откл&ndash;&gt;-->
 
 </body>
 </html>

@@ -62,6 +62,13 @@ picture{
   border-bottom: 3px solid var(--background-color2);
 }
 
+.phone-number {
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1em;
+  font-size: var(--font-size5);
+  color: var(--font-color1);
+}
 
 @keyframes button-animation {
   0%{
