@@ -14,7 +14,6 @@ const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal
 orderForm.addEventListener('change', (evt) => {
     evt.preventDefault();
     const {name, value} = evt.target;
-    // console.log(name, value)
     order[name] = value;
     addDataToStorage(name, value);
 })
@@ -34,13 +33,33 @@ orderForm.addEventListener('submit', async (evt) => {
             showModal('Нужно обязательно ввести имя.');
             return false;
         }
+        try {
+            const orders = await (await getAllOrders()).json();
 
-        const orders = await (await getAllOrders()).json();
+            switch (orders) {
+                case null:
+                    await saveOrder(order);
+                    showModal('Отлично! Заказ принят.');
 
-        switch (orders) {
-            case null:
-                await saveOrder(order, URL_ORDER_POST);
-                console.log('нет заказов')
+                    paragraphModalOrder.style.marginBottom = '1em';
+
+                    createDataTable({
+                        location: modalOrderForm,
+                        data: order,
+                        table: tableModalOrder,
+                    });
+                    return false;
+                case false:
+                    return false;
+            }
+
+            const isDuplicate = await duplicateValidation(userName.value, orders);
+
+            if (isDuplicate) {
+                showModal('Заказ с таким именем уже есть. Используйте пожалуста' +
+                    ' другое имя.')
+            } else {
+                await saveOrder(order);
                 showModal('Отлично! Заказ принят.');
 
                 paragraphModalOrder.style.marginBottom = '1em';
@@ -50,37 +69,24 @@ orderForm.addEventListener('submit', async (evt) => {
                     data: order,
                     table: tableModalOrder,
                 });
-                return false;
-            case false:
-                return false;
-        }
-
-        const isDuplicate = await duplicateValidation(userName.value, orders);
-
-        if (isDuplicate) {
-            showModal('Заказ с таким именем уже есть. Используйте пожалуста' +
-                ' другое имя.')
-        } else {
-            await saveOrder(order);
-            // console.log('есть')
-            showModal('Отлично! Заказ принят.');
-
-            paragraphModalOrder.style.marginBottom = '1em';
-
-            createDataTable({
-                location: modalOrderForm,
-                data: order,
-                table: tableModalOrder,
-            });
+            }
+        } catch (error) {
+            showModal('Упс, что-то пошло не так. Сообщите пожалуйста об этом по номеру телефона или' +
+                ' напишите мне в телеграм.');
         }
     }
 )
 
 orderForm.addEventListener('reset', () => {
+    const allTextarea = orderForm.querySelectorAll('textarea');
     order = {};
+
+    for (let textarea of allTextarea) {
+            textarea.placeholder = '';
+    }
 })
 
-btnCloseModalOrder.addEventListener('click',() => {
+btnCloseModalOrder.addEventListener('click', () => {
     modalOrderForm.style.display = 'none';
 })
 

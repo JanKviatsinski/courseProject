@@ -4,13 +4,13 @@ export const productsNode = document.querySelector('.order-form__products');
 const template = document.querySelector('#form-template');
 
 function createFieldset({legend, inputType, inputName, values, attribute}) {
-    const cloneNode = template.content.cloneNode( true);
+    const cloneNode = template.content.cloneNode(true);
     const fieldset = cloneNode.querySelector('.order-form__fieldset');
     const fieldsetLegend = fieldset.querySelector('legend');
 
     fieldsetLegend.textContent = legend;
     for (let value of values) {
-        fieldset.append(createLabel ({
+        fieldset.append(createLabel({
             value: value,
             type: inputType,
             name: inputName,

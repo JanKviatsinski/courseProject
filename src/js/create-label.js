@@ -1,4 +1,4 @@
-export function createLabel ({value, type, name, attribute}) {
+export function createLabel({value, type, name, attribute}) {
     const label = document.createElement('label');
     label.textContent = value;
 

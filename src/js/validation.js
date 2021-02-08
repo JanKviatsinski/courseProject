@@ -1,24 +1,11 @@
-// import {inputs} from "./storage.js";
-
-// orderForm.addEventListener('change', (evt) => {
-//     evt.preventDefault();
-//     const clickObj = evt.target;
-//     const inputCategory = clickObj.getAttribute('data-category')
-// console.log(clickObj.getAttribute('data-category'))
-//     if (inputCategory === 'product'){
-//         productsIsChecked = true;
-//     }
-// })
-
-// let productsIsChecked = false;/*изменить на фолс*/
-
 export function productsValidation(form){
     const inputs = form.querySelectorAll('input');
     let productsIsChecked = false;
 
     for (let input of inputs){
         const inputCategory = input.getAttribute('data-category');
-       if (inputCategory === 'product' && input.checked){
+
+        if (inputCategory === 'product' && input.checked){
            productsIsChecked = true;
        }
     }
