@@ -1,14 +1,12 @@
 .footer{
   display: flex;
   justify-content: center;
-  //min-width: 100%;
   background: var(--background-color3);
   font-size: var(--font-size2);
   font-family: var(--font-family1);
 }
 
 .footer-wrap{
-  //position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

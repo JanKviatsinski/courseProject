@@ -25,7 +25,7 @@ btnGreetingCloseBottom.addEventListener('click', () => {
 document.addEventListener('click', (evt) => {
     const clickObj = evt.target;
 
-    if (btnGreeting.compareDocumentPosition(clickObj) !== 0) {
+    if (clickObj !== btnGreeting) {
         greeting.style.display = 'none';
         btnGreeting.style.animationName =
             (greeting.style.display === 'block') ? 'none' : 'button-animation';
