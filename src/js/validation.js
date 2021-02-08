@@ -1,13 +1,13 @@
-// import {orderForm} from "./order.js";
-//
-// orderForm.addEventListener('change', (evt) => {
-//     evt.preventDefault();
-//     const clickObj = evt.target;
-//
-//     if ((clickObj.type === 'radio' || clickObj.type === 'checkbox') && clickObj.name !== 'address'){
-//         productsIsChecked = true;
-//     }
-// })
+export const orderForm = document.querySelector('#order-form');
+
+orderForm.addEventListener('change', (evt) => {
+    evt.preventDefault();
+    const clickObj = evt.target;
+
+    if ((clickObj.type === 'radio' || clickObj.type === 'checkbox') && clickObj.name !== 'address'){
+        productsIsChecked = true;
+    }
+})
 
 let productsIsChecked = false;/*изменить на фолс*/
 

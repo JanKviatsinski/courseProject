@@ -1,23 +1,22 @@
 import {showModal} from "./show-modal.js";
-import {productsValidation, nameValidation, duplicateValidation} from "./validation.js";
+import {productsValidation, nameValidation, duplicateValidation, orderForm} from "./validation.js";
 import {saveOrder, getAllOrders} from "./services.js";
 import {createDataTable} from "./create-table.js";
-import {getFromStorage, addDataToLocalStr} from "./storage.js";
+import {getFromStorage, addDataToStorage} from "./storage.js";
 
-export const tableModalOrder = document.createElement('table');
-export const orderForm = document.querySelector('#order-form');
 export const modalOrderForm = document.querySelector('.order-form__modal');
 export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph')
-export let order = getFromStorage();
-export const userName = orderForm.querySelector('.order-form__user-name');
+const tableModalOrder = document.createElement('table');
+let order = getFromStorage();
+const userName = orderForm.querySelector('.order-form__user-name');
 const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
 
 orderForm.addEventListener('change', (evt) => {
     evt.preventDefault();
     const {name, value} = evt.target;
-    console.log(name, value)
+    // console.log(name, value)
     order[name] = value;
-    addDataToLocalStr(name, value);
+    addDataToStorage(name, value);
 })
 
 orderForm.addEventListener('submit', async (evt) => {
