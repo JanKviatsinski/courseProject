@@ -1,17 +1,28 @@
-export const orderForm = document.querySelector('#order-form');
+// import {inputs} from "./storage.js";
 
-orderForm.addEventListener('change', (evt) => {
-    evt.preventDefault();
-    const clickObj = evt.target;
+// orderForm.addEventListener('change', (evt) => {
+//     evt.preventDefault();
+//     const clickObj = evt.target;
+//     const inputCategory = clickObj.getAttribute('data-category')
+// console.log(clickObj.getAttribute('data-category'))
+//     if (inputCategory === 'product'){
+//         productsIsChecked = true;
+//     }
+// })
 
-    if ((clickObj.type === 'radio' || clickObj.type === 'checkbox') && clickObj.name !== 'address'){
-        productsIsChecked = true;
+// let productsIsChecked = false;/*изменить на фолс*/
+
+export function productsValidation(form){
+    const inputs = form.querySelectorAll('input');
+    let productsIsChecked = false;
+
+    for (let input of inputs){
+        const inputCategory = input.getAttribute('data-category');
+       if (inputCategory === 'product' && input.checked){
+           productsIsChecked = true;
+       }
     }
-})
 
-let productsIsChecked = false;/*изменить на фолс*/
-
-export function productsValidation(){
     return productsIsChecked;
 }
 

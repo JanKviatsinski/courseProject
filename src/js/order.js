@@ -1,8 +1,8 @@
 import {showModal} from "./show-modal.js";
-import {productsValidation, nameValidation, duplicateValidation, orderForm} from "./validation.js";
+import {productsValidation, nameValidation, duplicateValidation,} from "./validation.js";
 import {saveOrder, getAllOrders} from "./services.js";
 import {createDataTable} from "./create-table.js";
-import {getFromStorage, addDataToStorage} from "./storage.js";
+import {getFromStorage, addDataToStorage, orderForm} from "./storage.js";
 
 export const modalOrderForm = document.querySelector('.order-form__modal');
 export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph')
@@ -62,7 +62,7 @@ orderForm.addEventListener('submit', async (evt) => {
                 ' другое имя.')
         } else {
             await saveOrder(order);
-            console.log('есть')
+            // console.log('есть')
             showModal('Отлично! Заказ принят.');
 
             paragraphModalOrder.style.marginBottom = '1em';

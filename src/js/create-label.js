@@ -1,4 +1,4 @@
-export function createLabel ({value, type, name}) {
+export function createLabel ({value, type, name, attribute}) {
     const label = document.createElement('label');
     label.textContent = value;
 
@@ -6,6 +6,7 @@ export function createLabel ({value, type, name}) {
     input.type = type;
     input.name = name;
     input.value = value;
+    input.setAttribute('data-category', attribute);
 
     label.prepend(input);
 

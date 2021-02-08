@@ -3,7 +3,7 @@ import {createLabel} from "./create-label.js";
 export const productsNode = document.querySelector('.order-form__products');
 const template = document.querySelector('#form-template');
 
-function createFieldset({legend, inputType, inputName, values}) {
+function createFieldset({legend, inputType, inputName, values, attribute}) {
     const cloneNode = template.content.cloneNode( true);
     const fieldset = cloneNode.querySelector('.order-form__fieldset');
     const fieldsetLegend = fieldset.querySelector('legend');
@@ -14,6 +14,7 @@ function createFieldset({legend, inputType, inputName, values}) {
             value: value,
             type: inputType,
             name: inputName,
+            attribute: attribute,
         }));
     }
 
@@ -25,6 +26,7 @@ createFieldset({
     inputType: 'radio',
     inputName: 'white-cheese',
     values: [300, 500, 700, 1000, 1500],
+    attribute: 'product',
 });
 
 createFieldset({
@@ -32,6 +34,7 @@ createFieldset({
     inputType: 'radio',
     inputName: 'yellow-cheese',
     values: [300, 500, 700, 1000, 1500],
+    attribute: 'product',
 });
 
 createFieldset({
@@ -39,6 +42,7 @@ createFieldset({
     inputType: 'radio',
     inputName: 'curd',
     values: [500, 1000, 1500],
+    attribute: 'product',
 });
 
 createFieldset({
@@ -46,6 +50,7 @@ createFieldset({
     inputType: 'radio',
     inputName: 'butter',
     values: [300, 500, 700, 1000, 1500],
+    attribute: 'product',
 });
 
 createFieldset({
@@ -53,6 +58,7 @@ createFieldset({
     inputType: 'radio',
     inputName: 'milk',
     values: [1, 2, 3],
+    attribute: 'product',
 });
 
 createFieldset({
@@ -60,6 +66,7 @@ createFieldset({
     inputType: 'radio',
     inputName: 'serum',
     values: [1, 2],
+    attribute: 'product',
 });
 
 createFieldset({
@@ -67,4 +74,5 @@ createFieldset({
     inputType: 'radio',
     inputName: 'address',
     values: ['Адрес доставки 1', 'Адрес доставки 2'],
+    attribute: 'address',
 });
