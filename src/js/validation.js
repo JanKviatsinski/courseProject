@@ -14,13 +14,11 @@ export function productsValidation(form){
 }
 
 export function nameValidation(order){
-    let nameIsChecked;
-    order.name ? nameIsChecked = true : nameIsChecked = false;
-
-    return nameIsChecked;
+    return Boolean(order.name);
 }
 
 export function duplicateValidation(name, orders){
+    //ко мне приходит обьект с сервера. Как сделать чтобы риходил массив я не знаю
     let nameIsOnOrders = false;
 
     for (let order in orders){

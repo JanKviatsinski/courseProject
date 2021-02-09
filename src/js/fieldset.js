@@ -1,6 +1,3 @@
-import {createLabel} from './create-label.js';
-import {createInput} from './create-input.js';
-
 export const productsNode = document.querySelector('.order-form__products');
 const template = document.querySelector('#form-template');
 
@@ -28,6 +25,25 @@ function createFieldset({legend, inputType, inputName, values, attribute}) {
     }
 
     productsNode.append(cloneNode);
+}
+
+function createInput({value, type, name, attribute, id}){
+    const input = document.createElement('input');
+    input.type = type;
+    input.name = name;
+    input.value = value;
+    input.id = id;
+    input.setAttribute('data-category', attribute);
+
+    return input;
+}
+
+function createLabel(value, id) {
+    const label = document.createElement('label');
+    label.textContent = value;
+    label.setAttribute('for', id);
+
+    return label;
 }
 
 createFieldset({
@@ -85,3 +101,4 @@ createFieldset({
     values: ['Адрес доставки 1', 'Адрес доставки 2'],
     attribute: 'address',
 });
+

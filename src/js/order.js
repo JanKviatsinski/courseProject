@@ -1,19 +1,22 @@
-import {showModal} from './show-modal.js';
+import {showModal} from './modal.js';
 import {productsValidation, nameValidation, duplicateValidation,} from './validation.js';
 import {saveOrder, getAllOrders} from './services.js';
-import {createDataTable} from './create-table.js';
-import {getFromStorage, addDataToStorage, orderForm} from './storage.js';
+import {createDataTable} from './modal.js';
+import {getFromStorage, addDataToStorage} from './storage.js';
 
+export const orderForm = document.querySelector('#order-form');
 export const modalOrderForm = document.querySelector('.order-form__modal');
-export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph')
-const tableModalOrder = document.createElement('table');
+export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph');
 let order = getFromStorage();
+const tableModalOrder = document.createElement('table');
 const userName = orderForm.querySelector('.order-form__user-name');
 const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
 
+completeForm(orderForm);
+
 orderForm.addEventListener('change', (evt) => {
-    evt.preventDefault();
     const {name, value} = evt.target;
+
     order[name] = value;
     addDataToStorage(name, value);
 })
@@ -26,34 +29,34 @@ orderForm.addEventListener('submit', async (evt) => {
 
         if (!productsIsChecked) {
             showModal('Вы не выбрали ни одного продукта');
-            return false;
+            return;
         }
 
         if (!nameIsChecked) {
             showModal('Нужно обязательно ввести имя.');
-            return false;
+            return;
         }
+
         try {
             const orders = await (await getAllOrders()).json();
 
-            switch (orders) {
-                case null:
-                    await saveOrder(order);
-                    showModal('Отлично! Заказ принят.');
+            if (orders === null) {
+                //можно запаковать код ниже в отдельную функцию, но как ее назвать если она
+                // делает несколько разных действий
+                await saveOrder(order);
+                showModal('Отлично! Заказ принят.');
 
-                    paragraphModalOrder.style.marginBottom = '1em';
+                paragraphModalOrder.style.marginBottom = '1em';
 
-                    createDataTable({
-                        location: modalOrderForm,
-                        data: order,
-                        table: tableModalOrder,
-                    });
-                    return false;
-                case false:
-                    return false;
+                createDataTable({
+                    location: modalOrderForm,
+                    data: order,
+                    table: tableModalOrder,
+                });
+                return;
             }
 
-            const isDuplicate = await duplicateValidation(userName.value, orders);
+            const isDuplicate = duplicateValidation(userName.value, orders);
 
             if (isDuplicate) {
                 showModal('Заказ с таким именем уже есть. Используйте пожалуста' +
@@ -77,6 +80,28 @@ orderForm.addEventListener('submit', async (evt) => {
     }
 )
 
+function completeForm(form) {
+    const inputs = form.querySelectorAll('input');
+
+    for (let input of inputs) {
+        if (input.value === localStorage[input.name]) {
+            input.checked = "checked";
+        }
+
+        if (localStorage[input.name]) {
+            input.value = localStorage[input.name];
+        }
+    }
+
+    const allTextarea = form.querySelectorAll('textarea')
+
+    for (let textarea of allTextarea) {
+        if (localStorage[textarea.name]) {
+            textarea.value = localStorage[textarea.name];
+        }
+    }
+}
+
 orderForm.addEventListener('reset', () => {
     order = {};
 })
@@ -96,6 +121,11 @@ document.addEventListener('click', (evt) => {
 
 
 
-
+// window.onunload = function() {
+//     console.log(454);
+//     addDataToStorage(order);
+//     console.log(localStorage);
+//     return false;
+// };
 
 
