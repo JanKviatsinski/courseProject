@@ -15,7 +15,7 @@ export function completeFormFromStorage(form) {
 
     for (let textarea of allTextarea) {
         if (localStorage[textarea.name]) {
-            textarea.placeholder = localStorage[textarea.name];
+            textarea.value = localStorage[textarea.name];
         }
     }
 }

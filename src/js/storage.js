@@ -1,4 +1,4 @@
-import {completeFormFromStorage} from "./autocomplete-form.js";
+import {completeFormFromStorage} from './autocomplete-form.js';
 
 export const orderForm = document.querySelector('#order-form');
 

@@ -1,4 +1,5 @@
-import {createLabel} from "./create-label.js";
+import {createLabel} from './create-label.js';
+import {createInput} from './create-input.js';
 
 export const productsNode = document.querySelector('.order-form__products');
 const template = document.querySelector('#form-template');
@@ -9,12 +10,20 @@ function createFieldset({legend, inputType, inputName, values, attribute}) {
     const fieldsetLegend = fieldset.querySelector('legend');
 
     fieldsetLegend.textContent = legend;
+
+    let inputIndex = 0;
+
     for (let value of values) {
-        fieldset.append(createLabel({
+        ++inputIndex;
+
+        fieldset.prepend(createLabel(value, `${inputName}-${inputIndex}`));
+
+        fieldset.prepend(createInput({
             value: value,
             type: inputType,
             name: inputName,
             attribute: attribute,
+            id: `${inputName}-${inputIndex}`,
         }));
     }
 

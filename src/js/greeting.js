@@ -10,22 +10,12 @@ btnGreeting.addEventListener('click', () => {
         (greeting.style.display === 'block') ? 'none' : 'button-animation';
 });
 
-btnGreetingCloseTop.addEventListener('click', () => {
-    greeting.style.display = 'none';
-    btnGreeting.style.animationName =
-        (greeting.style.display === 'block') ? 'none' : 'button-animation';
-})
-
-btnGreetingCloseBottom.addEventListener('click', () => {
-    greeting.style.display = 'none';
-    btnGreeting.style.animationName =
-        (greeting.style.display === 'block') ? 'none' : 'button-animation';
-})
-
 document.addEventListener('click', (evt) => {
     const clickObj = evt.target;
 
-    if (clickObj !== btnGreeting) {
+    if ((clickObj !== btnGreeting) ||
+        (clickObj === btnGreetingCloseBottom) ||
+        (clickObj === btnGreetingCloseTop)) {
         greeting.style.display = 'none';
         btnGreeting.style.animationName =
             (greeting.style.display === 'block') ? 'none' : 'button-animation';

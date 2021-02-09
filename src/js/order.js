@@ -1,8 +1,8 @@
-import {showModal} from "./show-modal.js";
-import {productsValidation, nameValidation, duplicateValidation,} from "./validation.js";
-import {saveOrder, getAllOrders} from "./services.js";
-import {createDataTable} from "./create-table.js";
-import {getFromStorage, addDataToStorage, orderForm} from "./storage.js";
+import {showModal} from './show-modal.js';
+import {productsValidation, nameValidation, duplicateValidation,} from './validation.js';
+import {saveOrder, getAllOrders} from './services.js';
+import {createDataTable} from './create-table.js';
+import {getFromStorage, addDataToStorage, orderForm} from './storage.js';
 
 export const modalOrderForm = document.querySelector('.order-form__modal');
 export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph')
@@ -78,12 +78,7 @@ orderForm.addEventListener('submit', async (evt) => {
 )
 
 orderForm.addEventListener('reset', () => {
-    const allTextarea = orderForm.querySelectorAll('textarea');
     order = {};
-
-    for (let textarea of allTextarea) {
-            textarea.placeholder = '';
-    }
 })
 
 btnCloseModalOrder.addEventListener('click', () => {
