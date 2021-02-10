@@ -8,6 +8,7 @@ export const orderForm = document.querySelector('#order-form');
 export const modalOrderForm = document.querySelector('.order-form__modal');
 export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph');
 let order = getFromStorage();
+console.log(order);
 const tableModalOrder = document.createElement('table');
 const userName = orderForm.querySelector('.order-form__user-name');
 const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
@@ -18,7 +19,7 @@ orderForm.addEventListener('change', (evt) => {
     const {name, value} = evt.target;
 
     order[name] = value;
-    addDataToStorage(name, value);
+    // addDataToStorage(name, value);
 })
 
 orderForm.addEventListener('submit', async (evt) => {
@@ -81,23 +82,28 @@ orderForm.addEventListener('submit', async (evt) => {
 )
 
 function completeForm(form) {
+    if(!localStorage.order){
+        return;
+    }
+    let dfd = JSON.parse(localStorage.order);
+
     const inputs = form.querySelectorAll('input');
 
     for (let input of inputs) {
-        if (input.value === localStorage[input.name]) {
+        if (input.value === dfd[input.name]) {
             input.checked = "checked";
         }
 
-        if (localStorage[input.name]) {
-            input.value = localStorage[input.name];
+        if (dfd.name && input.name === 'name') {
+            input.value = dfd.name;
         }
     }
 
     const allTextarea = form.querySelectorAll('textarea')
 
     for (let textarea of allTextarea) {
-        if (localStorage[textarea.name]) {
-            textarea.value = localStorage[textarea.name];
+        if (dfd[textarea.name]) {
+            textarea.value = dfd[textarea.name];
         }
     }
 }
@@ -119,13 +125,13 @@ document.addEventListener('click', (evt) => {
     }
 })
 
+window.addEventListener('unload',(evt) =>{
+    evt.preventDefault();
+    addDataToStorage('order', JSON.stringify(order));
+    console.log(localStorage)
+    console.log(JSON.parse(localStorage.order));
+    return false;
+})
 
-
-// window.onunload = function() {
-//     console.log(454);
-//     addDataToStorage(order);
-//     console.log(localStorage);
-//     return false;
-// };
 
 
