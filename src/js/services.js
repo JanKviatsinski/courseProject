@@ -1,4 +1,4 @@
-export const URL_ORDER_GET = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
+const URL_ORDER_GET = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
 const URL_ORDER_POST = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
 
 export async function saveOrder(data) {
@@ -12,14 +12,14 @@ export async function saveOrder(data) {
 }
 
 export async function getAllOrders() {
-    return await fetch(URL_ORDER_GET,{
+    return await fetch(URL_ORDER_GET, {
         method: 'GET',
     });
 }
 
 
-function delet() {
+function fetchDeleteOrders() {
     fetch(URL_ORDER_GET, {method: 'DELETE',})
 }
 
-// delet ();
+// fetchDeleteOrders ();

@@ -4,14 +4,21 @@ import {saveOrder, getAllOrders} from './services.js';
 import {createDataTable} from './modal.js';
 import {getFromStorage, addDataToStorage} from './storage.js';
 
-export const orderForm = document.querySelector('#order-form');
 export const modalOrderForm = document.querySelector('.order-form__modal');
-export const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph');
+const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph');
+const orderForm = document.querySelector('#order-form');
 let order = getFromStorage();
-console.log(order);
+
 const tableModalOrder = document.createElement('table');
 const userName = orderForm.querySelector('.order-form__user-name');
 const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
+const requestSuccessMessage = 'Отлично! Заказ принят.';
+const requestErrorMessage = 'Упс, что-то пошло не так. Сообщите пожалуйста об этом по номеру телефона или' +
+    ' напишите мне в телеграм.';
+const messageNameNotSelected = 'Нужно обязательно ввести имя.';
+const messageNoProductsSelected = 'Вы не выбрали ни одного продукта';
+const messageDuplicateName = 'Заказ с таким именем уже есть. Используйте пожалуста' +
+    ' другое имя.';
 
 completeForm(orderForm);
 
@@ -19,7 +26,6 @@ orderForm.addEventListener('change', (evt) => {
     const {name, value} = evt.target;
 
     order[name] = value;
-    // addDataToStorage(name, value);
 })
 
 orderForm.addEventListener('submit', async (evt) => {
@@ -29,12 +35,20 @@ orderForm.addEventListener('submit', async (evt) => {
         const productsIsChecked = productsValidation(orderForm);
 
         if (!productsIsChecked) {
-            showModal('Вы не выбрали ни одного продукта');
+            showModal({
+                displayableObj: modalOrderForm,
+                message: messageNoProductsSelected,
+                locationMessage: paragraphModalOrder
+            });
             return;
         }
 
         if (!nameIsChecked) {
-            showModal('Нужно обязательно ввести имя.');
+            showModal({
+                displayableObj: modalOrderForm,
+                message: messageNameNotSelected,
+                locationMessage: paragraphModalOrder
+            });
             return;
         }
 
@@ -45,9 +59,12 @@ orderForm.addEventListener('submit', async (evt) => {
                 //можно запаковать код ниже в отдельную функцию, но как ее назвать если она
                 // делает несколько разных действий
                 await saveOrder(order);
-                showModal('Отлично! Заказ принят.');
 
-                paragraphModalOrder.style.marginBottom = '1em';
+                showModal({
+                    displayableObj: modalOrderForm,
+                    message: requestSuccessMessage,
+                    locationMessage: paragraphModalOrder
+                });
 
                 createDataTable({
                     location: modalOrderForm,
@@ -60,13 +77,19 @@ orderForm.addEventListener('submit', async (evt) => {
             const isDuplicate = duplicateValidation(userName.value, orders);
 
             if (isDuplicate) {
-                showModal('Заказ с таким именем уже есть. Используйте пожалуста' +
-                    ' другое имя.')
+                showModal({
+                    displayableObj: modalOrderForm,
+                    message: messageDuplicateName,
+                    locationMessage: paragraphModalOrder
+                });
             } else {
                 await saveOrder(order);
-                showModal('Отлично! Заказ принят.');
 
-                paragraphModalOrder.style.marginBottom = '1em';
+                showModal({
+                    displayableObj: modalOrderForm,
+                    message: requestSuccessMessage,
+                    locationMessage: paragraphModalOrder
+                });
 
                 createDataTable({
                     location: modalOrderForm,
@@ -75,35 +98,37 @@ orderForm.addEventListener('submit', async (evt) => {
                 });
             }
         } catch (error) {
-            showModal('Упс, что-то пошло не так. Сообщите пожалуйста об этом по номеру телефона или' +
-                ' напишите мне в телеграм.');
+            showModal({
+                displayableObj: modalOrderForm,
+                message: requestErrorMessage,
+                locationMessage: paragraphModalOrder
+            });
         }
     }
 )
 
 function completeForm(form) {
-    if(!localStorage.order){
+    if (!localStorage.order) {
         return;
     }
-    let dfd = JSON.parse(localStorage.order);
 
+    const orderFromStorage = JSON.parse(localStorage.order);
     const inputs = form.querySelectorAll('input');
+    const allTextarea = form.querySelectorAll('textarea')
 
     for (let input of inputs) {
-        if (input.value === dfd[input.name]) {
+        if (input.value === orderFromStorage[input.name]) {
             input.checked = "checked";
         }
 
-        if (dfd.name && input.name === 'name') {
-            input.value = dfd.name;
+        if (orderFromStorage.name && input.name === 'name') {
+            input.value = orderFromStorage.name;
         }
     }
 
-    const allTextarea = form.querySelectorAll('textarea')
-
     for (let textarea of allTextarea) {
-        if (dfd[textarea.name]) {
-            textarea.value = dfd[textarea.name];
+        if (orderFromStorage[textarea.name]) {
+            textarea.value = orderFromStorage[textarea.name];
         }
     }
 }
@@ -125,12 +150,9 @@ document.addEventListener('click', (evt) => {
     }
 })
 
-window.addEventListener('unload',(evt) =>{
+window.addEventListener('unload', (evt) => {
     evt.preventDefault();
     addDataToStorage('order', JSON.stringify(order));
-    console.log(localStorage)
-    console.log(JSON.parse(localStorage.order));
-    return false;
 })
 
 

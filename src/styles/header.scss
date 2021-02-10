@@ -8,7 +8,6 @@
 .main-header {
   display: flex;
   justify-content: center;
-  min-width: 100%;
   background: var(--background-color1);
   box-shadow: 0 15px 15px var(--background-color1);
 }
@@ -104,7 +103,6 @@
 }
 
 .main-header__greeting-wrap {
-  width: 100%;
   padding: var(--indentation1);
   padding-top: 0;
   box-sizing: border-box;
@@ -123,7 +121,7 @@
   border-radius: var(--border-radius1) 0 0 var(--border-radius1);
 }
 
-.greeting__top-btn--close{
+.greeting__top-btn--close {
   border-radius: 50% 50% 0 0;
   left: 100%;
   transform: translateX(-100%);

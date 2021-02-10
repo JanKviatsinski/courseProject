@@ -1,12 +1,12 @@
 @media (max-width: 1000px) {
-  :root{
-    font-size: clamp(5px,  62.5%, 11px);
-      --font-size6: 3.2rem;
-      --font-size5: 3rem;
-      --font-size4: 2.8rem;
-      --font-size3: 2.6rem;
-      --font-size2: 2.4rem;
-      --font-size1: 2.2rem;
+  :root {
+    font-size: clamp(5px, 62.5%, 11px);
+    --font-size6: 3.2rem;
+    --font-size5: 3rem;
+    --font-size4: 2.8rem;
+    --font-size3: 2.6rem;
+    --font-size2: 2.4rem;
+    --font-size1: 2.2rem;
   }
 
   .order-form__products {
@@ -16,7 +16,7 @@
 
 @media (max-width: 700px) {
   :root {
-    font-size: clamp(5px,  62.5%, 12px);
+    font-size: clamp(5px, 62.5%, 12px);
     --font-size6: 3rem;
     --font-size5: 2.8rem;
     --font-size4: 2.6rem;
@@ -62,12 +62,11 @@
     display: block;
   }
 
-  .app-main{
-    background-image:
-            url(../img/section-order-form-background-mobile.jpg);
+  .app-main {
+    background-image: url(../img/section-order-form-background-mobile.jpg);
   }
 
-  .order-form__modal{
+  .order-form__modal {
     font-size: 18px;
   }
 }

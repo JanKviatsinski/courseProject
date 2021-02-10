@@ -13,9 +13,9 @@ btnGreeting.addEventListener('click', () => {
 document.addEventListener('click', (evt) => {
     const clickObj = evt.target;
 
-    if ((clickObj !== btnGreeting) ||
-        (clickObj === btnGreetingCloseBottom) ||
-        (clickObj === btnGreetingCloseTop)) {
+    if (clickObj !== btnGreeting ||
+        clickObj === btnGreetingCloseBottom ||
+        clickObj === btnGreetingCloseTop) {
         greeting.style.display = 'none';
         btnGreeting.style.animationName =
             (greeting.style.display === 'block') ? 'none' : 'button-animation';

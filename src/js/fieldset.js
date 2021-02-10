@@ -27,7 +27,7 @@ function createFieldset({legend, inputType, inputName, values, attribute}) {
     productsNode.append(cloneNode);
 }
 
-function createInput({value, type, name, attribute, id}){
+function createInput({value, type, name, attribute, id}) {
     const input = document.createElement('input');
     input.type = type;
     input.name = name;

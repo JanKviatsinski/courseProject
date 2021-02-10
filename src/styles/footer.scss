@@ -1,4 +1,4 @@
-.footer{
+.footer {
   display: flex;
   justify-content: center;
   background: var(--background-color3);
@@ -6,37 +6,37 @@
   font-family: var(--font-family1);
 }
 
-.footer-wrap{
+.footer-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 1440px;
-  padding:  0.5em var(--indentation1);
+  padding: 0.5em var(--indentation1);
   box-sizing: border-box;
 
-  > *{
+  > * {
     margin-bottom: 0.2em;
   }
 
-  :last-child{
+  :last-child {
     margin: 0;
   }
 }
 
-.footer__address{
+.footer__address {
   display: flex;
 }
 
-.footer__phone-number{
+.footer__phone-number {
   margin-right: 0.3em;
 }
 
-.footer__telegram-img{
+.footer__telegram-img {
   max-width: 1em;
 }
 
-.footer__author{
+.footer__author {
   font-family: var(--font-family2);
   font-size: 0.5em;
 }

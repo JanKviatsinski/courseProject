@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Titled</title>
     <meta name="viewport" content="width=device-width">
-<!--    <meta name="viewport" content="width=500, initial-scale=1">-->
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap"
           rel="stylesheet">
@@ -48,11 +47,15 @@
                 <button class="greeting__top-btn--close btn--close"></button>
 
                 <p class="main-header__greeting">
-                    Привет, меня зовут Ян. Я фермер. Уже пять лет мы занимаемся молочкой. У нас свои коровы,
-                    есть земля, сами заготавливаем коровам корма. Мне нравится то чем я занимаюсь, поэтому
-                    получается вкусно и полезно, и это приятно. А еще приятно получать хорошие отзывы и
+                    Привет, меня зовут Ян. Я фермер. Уже пять лет мы занимаемся молочкой. У нас свои
+                    коровы,
+                    есть земля, сами заготавливаем коровам корма. Мне нравится то чем я занимаюсь,
+                    поэтому
+                    получается вкусно и полезно, и это приятно. А еще приятно получать хорошие
+                    отзывы и
                     благодарности.
-                    На этой страничке вы можете поближе познакомиться с нами и нашими коровками. По всем вопросам можно писать в телеграмм. Пока, удачи))
+                    На этой страничке вы можете поближе познакомиться с нами и нашими коровками. По
+                    всем вопросам можно писать в телеграмм. Пока, удачи))
                 </p>
 
                 <button class="greeting__bottom-btn--close btn--close"></button>
@@ -62,57 +65,57 @@
 </div>
 
 <main class="app-main">
-        <div class="app-main-wrap">
-            <header class="app-main__header">
-                    <h2 class="app-main__title">
-                        Здесь вы можете сделать заказ
-                    </h2>
+    <div class="app-main-wrap">
+        <header class="app-main__header">
+            <h2 class="app-main__title">
+                Здесь вы можете сделать заказ
+            </h2>
 
-                    <p class="app-main__paragraph">
-                        Для оформления заказа заполните необходимые поля и
-                        нажмите кнопку "Заказать".
-                    </p>
-            </header>
-
-            <form id="order-form" name="order-form">
-                    <div class="order-form__products">
-                    </div>
-
-                    <div class="order-form__form-controls">
-
-                        <label for="order-form__note"></label>
-                        <textarea id="order-form__note"
-                                  name="note"
-                              placeholder="Замечания и предложения"></textarea>
-
-                        <label for="order-form__user-name"></label>
-                        <input class="order-form__user-name"
-                               id="order-form__user-name"
-                               name="name"
-                               type="text"
-                               autocomplete="off"
-                               placeholder="Ваше имя">
-
-                        <div class="order-form__buttons">
-                            <button class="order-form__btn--reset"
-                                    type="reset">
-                              Очистить форму
-                            </button>
-
-                            <button class="order-form__btn--submit"
-                                    type="submit">
-                                Заказать
-                            </button>
-                        </div>
-                    </div>
-            </form>
-        </div>
-
-        <div class="order-form__modal">
-            <p class="order-form__modal-paragraph">
+            <p class="app-main__paragraph">
+                Для оформления заказа заполните необходимые поля и
+                нажмите кнопку "Заказать".
             </p>
+        </header>
 
-            <button class="order-form__btn--close-modal btn--close"></button>
+        <form id="order-form" name="order-form">
+            <div class="order-form__products">
+            </div>
+
+            <div class="order-form__form-controls">
+
+                <label for="order-form__note"></label>
+                <textarea id="order-form__note"
+                          name="note"
+                          placeholder="Замечания и предложения"></textarea>
+
+                <label for="order-form__user-name"></label>
+                <input class="order-form__user-name"
+                       id="order-form__user-name"
+                       name="name"
+                       type="text"
+                       autocomplete="off"
+                       placeholder="Ваше имя">
+
+                <div class="form-controls__buttons">
+                    <button class="order-form__btn--reset"
+                            type="reset">
+                        Очистить форму
+                    </button>
+
+                    <button class="order-form__btn--submit"
+                            type="submit">
+                        Заказать
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="order-form__modal">
+        <p class="order-form__modal-paragraph">
+        </p>
+
+        <button class="order-form__btn--close-modal btn--close"></button>
     </div>
 </main>
 
@@ -129,7 +132,8 @@
             </a>
 
             <a href="https://t.me/JanKviatsinki" class="footer__telegram">
-                <img class="footer__telegram-img telegram-img" src="./img/telegram.svg" alt="telegram">
+                <img class="footer__telegram-img telegram-img" src="./img/telegram.svg"
+                     alt="telegram">
             </a>
         </address>
 
