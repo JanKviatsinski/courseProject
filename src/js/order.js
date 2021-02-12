@@ -1,6 +1,6 @@
 import {showModal} from './modal.js';
 import {productsValidation, nameValidation, duplicateValidation,} from './validation.js';
-import {saveOrder, getAllOrders} from './services.js';
+import {saveOrder, getUserOrders, authentication} from './services.js';
 import {createDataTable} from './modal.js';
 import {getFromStorage, addDataToStorage} from './storage.js';
 
@@ -20,18 +20,45 @@ const messageNoProductsSelected = 'Вы не выбрали ни одного п
 const messageDuplicateName = 'Заказ с таким именем уже есть. Используйте пожалуста' +
     ' другое имя.';
 
+
 completeForm(orderForm);
 
-orderForm.addEventListener('change', (evt) => {
-    const {name, value} = evt.target;
-
-    order[name] = value;
-})
+// orderForm.addEventListener('change', (evt) => {
+//     const {name, value} = evt.target;
+//
+//     order[name] = value;
+// })
 
 orderForm.addEventListener('submit', async (evt) => {
-        evt.preventDefault();
+    evt.preventDefault();
+    const userEmail = orderForm.querySelector('#order-form__email').value;
+    const userPassword = orderForm.querySelector('#order-form__password').value;
 
-        const nameIsChecked = nameValidation(order);
+        console.log(userEmail)
+        console.log(userPassword)
+
+        const responseAuth = await authentication(userEmail, userPassword);
+        const resultAuth = await responseAuth.json();
+        const idToken = resultAuth.idToken;
+        const localId = resultAuth.localId;
+    console.log(localId)
+
+        const responseUserOrders = await getUserOrders(localId, idToken);
+        const resultUserOrders = await responseUserOrders.json();
+        console.log(resultUserOrders);
+
+        const responseSave = await saveOrder(localId,{
+            email: userEmail,
+            id: localId,
+            index: 2,
+        })
+        const resultSave = await responseSave.json();
+        // console.log(resultSave)
+
+
+        return;
+//////-------------------------------//////////////////////////////
+        // const nameIsChecked = nameValidation(order);
         const productsIsChecked = productsValidation(orderForm);
 
         if (!productsIsChecked) {
@@ -43,17 +70,17 @@ orderForm.addEventListener('submit', async (evt) => {
             return;
         }
 
-        if (!nameIsChecked) {
-            showModal({
-                displayableObj: modalOrderForm,
-                message: messageNameNotSelected,
-                locationMessage: paragraphModalOrder
-            });
-            return;
-        }
+        // if (!nameIsChecked) {
+        //     showModal({
+        //         displayableObj: modalOrderForm,
+        //         message: messageNameNotSelected,
+        //         locationMessage: paragraphModalOrder
+        //     });
+        //     return;
+        // }
 
         try {
-            const orders = await (await getAllOrders()).json();
+            const orders = await (await getUserOrders()).json();
 
             if (orders === null) {
                 //можно запаковать код ниже в отдельную функцию, но как ее назвать если она
@@ -118,7 +145,7 @@ function completeForm(form) {
 
     for (let input of inputs) {
         if (input.value === orderFromStorage[input.name]) {
-            input.checked = "checked";
+            input.checked = 'checked';
         }
 
         if (orderFromStorage.name && input.name === 'name') {
