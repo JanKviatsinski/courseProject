@@ -1,5 +1,6 @@
+export const ORDER_KEY = 'order';
 export function getFromStorage() {
-    return (localStorage.order) ? JSON.parse(localStorage.order) : {};
+    return (localStorage.getItem(ORDER_KEY)) ? JSON.parse(localStorage.getItem(ORDER_KEY)) : {};
 }
 
 export function addDataToStorage(key, value) {

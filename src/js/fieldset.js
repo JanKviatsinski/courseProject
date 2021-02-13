@@ -1,4 +1,4 @@
-export const productsNode = document.querySelector('.order-form__products');
+const productsNode = document.querySelector('.order-form__products');
 const template = document.querySelector('#form-template');
 
 function createFieldset({legend, inputType, inputName, values, attribute}) {
@@ -8,23 +8,19 @@ function createFieldset({legend, inputType, inputName, values, attribute}) {
 
     fieldsetLegend.textContent = legend;
 
-    let inputIndex = 0;
-
-    for (let value of values) {
-        ++inputIndex;
-
-        fieldset.prepend(createLabel(value, `${inputName}-${inputIndex}`));
+    values.forEach((value, index) => {
+        fieldset.prepend(createLabel(value, `${inputName}-${index}`));
 
         fieldset.prepend(createInput({
             value: value,
             type: inputType,
             name: inputName,
             attribute: attribute,
-            id: `${inputName}-${inputIndex}`,
+            id: `${inputName}-${index}`,
         }));
-    }
 
-    productsNode.append(cloneNode);
+        productsNode.append(cloneNode);
+    })
 }
 
 function createInput({value, type, name, attribute, id}) {

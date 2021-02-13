@@ -1,8 +1,8 @@
 const URL_ORDER_GET = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
 const URL_ORDER_POST = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
 
-export async function saveOrder(data) {
-    return await fetch(URL_ORDER_POST, {
+export function saveOrder(data) {
+    return fetch(URL_ORDER_POST, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -11,8 +11,8 @@ export async function saveOrder(data) {
     });
 }
 
-export async function getAllOrders() {
-    return await fetch(URL_ORDER_GET, {
+export function getAllOrders() {
+    return fetch(URL_ORDER_GET, {
         method: 'GET',
     });
 }
