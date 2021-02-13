@@ -1,6 +1,6 @@
 import {showModal} from './modal.js';
 import {productsValidation, nameValidation, duplicateValidation,} from './validation.js';
-import {saveOrder, getUserOrders, authentication} from './services.js';
+import {saveOrder, getUserOrders, authentication, registration} from './services.js';
 import {createDataTable} from './modal.js';
 import {getFromStorage, addDataToStorage} from './storage.js';
 
@@ -33,30 +33,45 @@ orderForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
     const userEmail = orderForm.querySelector('#order-form__email').value;
     const userPassword = orderForm.querySelector('#order-form__password').value;
-
         console.log(userEmail)
         console.log(userPassword)
+        let idToken;
+        let localId;
 
         const responseAuth = await authentication(userEmail, userPassword);
         const resultAuth = await responseAuth.json();
-        const idToken = resultAuth.idToken;
-        const localId = resultAuth.localId;
-    console.log(localId)
+        idToken = resultAuth.idToken;
+        localId = resultAuth.localId;
+    console.log(idToken)
 
-        const responseUserOrders = await getUserOrders(localId, idToken);
-        const resultUserOrders = await responseUserOrders.json();
-        console.log(resultUserOrders);
-
+    if (idToken === undefined){
+        console.log('содаем нового');
+        const responseRegistration = await registration(userEmail, userPassword);
+        const resultRegistration = await responseRegistration.json();
+        idToken = resultRegistration.idToken;
+        localId = resultRegistration.localId;
+    }else {
         const responseSave = await saveOrder(localId,{
             email: userEmail,
             id: localId,
             index: 2,
         })
         const resultSave = await responseSave.json();
-        // console.log(resultSave)
+        console.log('рзультат', resultSave)
 
+        // const responseUserOrders = await getUserOrders(localId, idToken);
+        // const resultUserOrders = await responseUserOrders.json();
+        //
+        // console.log(resultUserOrders);
+    }
 
         return;
+
+
+
+
+
+
 //////-------------------------------//////////////////////////////
         // const nameIsChecked = nameValidation(order);
         const productsIsChecked = productsValidation(orderForm);
