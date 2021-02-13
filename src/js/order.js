@@ -1,14 +1,13 @@
 import {showModal, createDataTable} from './modal.js';
 import {categoryValidation, isRequired, duplicateValidation,} from './validations.js';
 import {saveOrder, getAllOrders} from './services.js';
-// import {createDataTable} from './modal.js';
 import {getFromStorage, addDataToStorage, ORDER_KEY} from './storage.js';
 
+const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
 const modalOrderForm = document.querySelector('.order-form__modal');
 const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph');
 const orderForm = document.querySelector('#order-form');
 let order = getFromStorage();
-
 const tableModalOrder = document.createElement('table');
 const userName = orderForm.querySelector('.order-form__user-name');
 const requestSuccessMessage = 'Отлично! Заказ принят.';
@@ -19,7 +18,7 @@ const messageNoProductsSelected = 'Вы не выбрали ни одного п
 const messageDuplicateName = 'Заказ с таким именем уже есть. Используйте пожалуста' +
     ' другое имя.';
 
-completeForm(orderForm);
+fillForm(JSON.parse(localStorage.getItem(ORDER_KEY)));
 
 orderForm.addEventListener('change', (evt) => {
     const {name, value} = evt.target;
@@ -29,11 +28,11 @@ orderForm.addEventListener('change', (evt) => {
 
 orderForm.addEventListener('submit', async (evt) => {
         evt.preventDefault();
-    const inputs = orderForm.querySelectorAll('input');
-    const nameIsChecked = isRequired(order.name);
-    const productsIsChecked = categoryValidation(inputs, 'product');
+        const inputs = orderForm.querySelectorAll('input');
+        const nameIsChecked = isRequired(order.name);
+        const productsIsChecked = categoryValidation(inputs, 'product');
 
-    if (!productsIsChecked) {
+        if (!productsIsChecked) {
             showModal({
                 displayableObj: modalOrderForm,
                 message: messageNoProductsSelected,
@@ -104,31 +103,43 @@ orderForm.addEventListener('submit', async (evt) => {
     }
 )
 
-function completeForm(form) {
-    if (!localStorage.order) {
+function fillForm(data) {
+    if (Object.keys(data).length === 0) {
         return;
     }
 
-    const orderFromStorage = JSON.parse(localStorage.order);
-    const inputs = form.querySelectorAll('input');
-    const allTextarea = form.querySelectorAll('textarea')
-
-    for (let input of inputs) {
-        if (input.value === orderFromStorage[input.name]) {
-            input.checked = "checked";
-        }
-
-        if (orderFromStorage.name && input.name === 'name') {
-            input.value = orderFromStorage.name;
-        }
+    if (data.name) {
+        userName.value = data.name;
     }
 
-    for (let textarea of allTextarea) {
-        if (orderFromStorage[textarea.name]) {
-            textarea.value = orderFromStorage[textarea.name];
+    const inputs = orderForm.querySelectorAll('input');
+    const allTextarea = orderForm.querySelectorAll('textarea')
+
+    inputs.forEach((input) => {
+        if (input.value === data[input.name]) {
+            input.checked = 'checked';
         }
-    }
+    })
+
+    allTextarea.forEach((textarea) => {
+        if (data[textarea.name]) {
+            textarea.value = data[textarea.name];
+        }
+    })
 }
+
+btnCloseModalOrder.addEventListener('click', () => {
+    modalOrderForm.style.display = 'none';
+})
+
+document.addEventListener('click', (evt) => {
+    const clickObj = evt.target;
+
+    if (modalOrderForm.compareDocumentPosition(clickObj) === 2) {
+        modalOrderForm.style.display = 'none';
+        tableModalOrder.remove();
+    }
+})
 
 orderForm.addEventListener('reset', () => {
     order = {};
