@@ -28,7 +28,8 @@
 
                 <address class="main-header__address">
                     <div class="address__phone-number-wrap">
-                        <img class="address__phone-img" src="./img/img-phone.svg" alt="img phone">
+                        <img class="address__phone-img" src="./img/img-phone.svg"
+                             alt="img phone">
 
                         <a href="tel: +375290000000"
                            class=" main-header__phone-number phone-number">
@@ -37,7 +38,8 @@
                     </div>
 
                     <a href="https://t.me/JanKviatsinki" class="main-header__telegram">
-                        <img class="main-header__telegram-img telegram-img" src="./img/telegram.svg"
+                        <img class="main-header__telegram-img telegram-img"
+                             src="./img/telegram.svg"
                              alt="telegram">
                     </a>
                 </address>
@@ -47,19 +49,53 @@
                 <button class="greeting__top-btn--close btn--close"></button>
 
                 <p class="main-header__greeting">
-                    Привет, меня зовут Ян. Я фермер. Уже пять лет мы занимаемся молочкой. У нас свои
+                    Привет, меня зовут Ян. Я фермер. Уже пять лет мы занимаемся молочкой. У нас
+                    свои
                     коровы,
-                    есть земля, сами заготавливаем коровам корма. Мне нравится то чем я занимаюсь,
+                    есть земля, сами заготавливаем коровам корма. Мне нравится то чем я
+                    занимаюсь,
                     поэтому
                     получается вкусно и полезно, и это приятно. А еще приятно получать хорошие
                     отзывы и
                     благодарности.
-                    На этой страничке вы можете поближе познакомиться с нами и нашими коровками. По
+                    На этой страничке вы можете поближе познакомиться с нами и нашими коровками.
+                    По
                     всем вопросам можно писать в телеграмм. Пока, удачи))
                 </p>
 
                 <button class="greeting__bottom-btn--close btn--close"></button>
             </div>
+
+            <form id="registration-form" name="registration-form">
+                <label for="registration-form__email"></label>
+                <input type="email"
+                       id="registration-form__email"
+                       placeholder="Email">
+
+                <label for="registration-form__password"></label>
+                <input type="password"
+                       id="registration-form__password"
+                       placeholder="Password">
+
+                <input class="registration-form__user-name"
+                       id="registration-form__user-name"
+                       name="name"
+                       type="text"
+                       autocomplete="off"
+                       placeholder="Name">
+
+                <div class="registration-form__buttons">
+                    <button class="registration-form__btn--reset"
+                            type="reset">
+                        Отмена
+                    </button>
+
+                    <button class="registration-form__btn--submit"
+                            type="submit">
+                        Ок
+                    </button>
+                </div>
+            </form>
         </div>
     </header>
 </div>

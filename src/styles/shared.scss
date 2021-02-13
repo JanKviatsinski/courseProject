@@ -39,7 +39,8 @@ picture {
   position: relative;
   min-width: 1.5em;
   min-height: 1.5em;
-  border-radius: 50% 50%;
+  border-radius: 50%;
+  border: solid 1px var(--background-color2);
   background: var(--background-color3);
 }
 
