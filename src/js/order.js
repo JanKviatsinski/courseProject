@@ -1,4 +1,4 @@
-import {showModal} from './modal.js';
+import {showModal, createDialogueButtons} from './modal.js';
 import {productsValidation, nameValidation, duplicateValidation,} from './validation.js';
 import {saveOrder, getUserOrders, authentication, registration} from './services.js';
 import {createDataTable} from './modal.js';
@@ -19,6 +19,7 @@ const messageNameNotSelected = 'Нужно обязательно ввести �
 const messageNoProductsSelected = 'Вы не выбрали ни одного продукта';
 const messageDuplicateName = 'Заказ с таким именем уже есть. Используйте пожалуста' +
     ' другое имя.';
+const messageRegistrationQuestion = 'Зарегестрируемся?';
 
 
 completeForm(orderForm);
@@ -30,9 +31,9 @@ completeForm(orderForm);
 // })
 
 orderForm.addEventListener('submit', async (evt) => {
-    evt.preventDefault();
-    const userEmail = orderForm.querySelector('#order-form__email').value;
-    const userPassword = orderForm.querySelector('#order-form__password').value;
+        evt.preventDefault();
+        const userEmail = orderForm.querySelector('#order-form__email').value;
+        const userPassword = orderForm.querySelector('#order-form__password').value;
         console.log(userEmail)
         console.log(userPassword)
         let idToken;
@@ -42,34 +43,45 @@ orderForm.addEventListener('submit', async (evt) => {
         const resultAuth = await responseAuth.json();
         idToken = resultAuth.idToken;
         localId = resultAuth.localId;
-    console.log(idToken)
+        console.log(localId)
 
-    if (idToken === undefined){
-        console.log('содаем нового');
-        const responseRegistration = await registration(userEmail, userPassword);
-        const resultRegistration = await responseRegistration.json();
-        idToken = resultRegistration.idToken;
-        localId = resultRegistration.localId;
-    }else {
-        const responseSave = await saveOrder(localId,{
-            email: userEmail,
-            id: localId,
-            index: 2,
-        })
-        const resultSave = await responseSave.json();
-        console.log('рзультат', resultSave)
+        if (idToken === undefined) {
+            showModal({
+                displayableObj: modalOrderForm,
+                message: messageRegistrationQuestion,
+                locationMessage: paragraphModalOrder
+            });
+            modalOrderForm.append(createDialogueButtons({
+                wrapClassName: 'registration-dialog',
+                buttons: {
+                    cancel: 'registration-dialog__button--cancel',
+                    ok: 'registration-dialog__button--OK'
+                },
+            }))
 
-        // const responseUserOrders = await getUserOrders(localId, idToken);
-        // const resultUserOrders = await responseUserOrders.json();
-        //
-        // console.log(resultUserOrders);
-    }
+
+            return;
+            console.log('содаем нового');
+            const responseRegistration = await registration(userEmail, userPassword);
+            const resultRegistration = await responseRegistration.json();
+            idToken = resultRegistration.idToken;
+            localId = resultRegistration.localId;
+        } else {
+            const responseSaveOrder = await saveOrder(localId, {
+                email: userEmail,
+                id: localId,
+                index: 2,
+            })
+            const resultSaveOrder = await responseSaveOrder.json();
+            console.log('рзультат', resultSaveOrder)
+
+            // const responseUserOrders = await getUserOrders(localId, idToken);
+            // const resultUserOrders = await responseUserOrders.json();
+            //
+            // console.log(resultUserOrders);
+        }
 
         return;
-
-
-
-
 
 
 //////-------------------------------//////////////////////////////

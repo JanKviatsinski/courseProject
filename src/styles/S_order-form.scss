@@ -185,6 +185,15 @@
   margin-bottom: 1em;
 }
 
+.registration-dialog {
+  button {
+    background: var(--background-color2);
+    border-radius: var(--border-radius1);
+    margin-right: 20px;
+    padding: 0.4em;
+  }
+}
+
 .order-form__btn--close-modal {
   position: relative;
   order: 10;

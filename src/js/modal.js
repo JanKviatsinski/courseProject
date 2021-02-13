@@ -16,3 +16,17 @@ export function createDataTable({location, data, table}) {
 
     location.append(table);
 }
+
+export function createDialogueButtons ({wrapClassName, buttons}){
+    const wrapButtons = document.createElement('div');
+    wrapButtons.className = wrapClassName;
+
+    for (let buttonClassName in buttons){
+        const button = document.createElement('button');
+        button.className = buttons[buttonClassName];
+        button.textContent = buttonClassName;
+        wrapButtons.append(button);
+    }
+
+    return wrapButtons;
+}
