@@ -1,6 +1,9 @@
-export function showModal({displayableObj, locationMessage, message}) {
-    displayableObj.style.display = 'flex';
-    locationMessage.textContent = message;
+const modal = document.querySelector('.modal');
+const modalParagraph = modal.querySelector('.modal__paragraph');
+
+export function showModal(message) {
+    modal.style.display = 'flex';
+    modalParagraph.textContent = message;
 }
 
 export function createDataTable({location, data, table}) {
@@ -17,16 +20,18 @@ export function createDataTable({location, data, table}) {
     location.append(table);
 }
 
-export function createDialogueButtons ({wrapClassName, buttons}){
+export function createDialogueButtons (btnOK, btnCancel) {
     const wrapButtons = document.createElement('div');
-    wrapButtons.className = wrapClassName;
+    wrapButtons.className = 'modal__dialogue-buttons';
+    btnOK.className = 'modal__dialogue-btn--ok';
+    btnOK.textContent = 'ok';
+    btnCancel.className = 'modal__dialogue-btn--cancel';
+    btnCancel.textContent = 'отмена';
+    wrapButtons.append(btnOK);
+    wrapButtons.append(btnCancel);
+    modal.append(wrapButtons);
+}
 
-    for (let buttonClassName in buttons){
-        const button = document.createElement('button');
-        button.className = buttons[buttonClassName];
-        button.textContent = buttonClassName;
-        wrapButtons.append(button);
-    }
-
-    return wrapButtons;
+export function hideModal () {
+    modal.style.display = 'none';
 }

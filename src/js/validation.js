@@ -13,12 +13,11 @@ export function productsValidation(form) {
     return productsIsChecked;
 }
 
-export function nameValidation(order) {
-    return Boolean(order.name);
+export function nameValidation(name) {
+    return Boolean(name.trim());
 }
 
 export function duplicateValidation(name, orders) {
-    //ко мне приходит обьект с сервера. Я пока не знаю как сделать чтобы приходил массив
     let nameIsOnOrders = false;
 
     for (let order in orders) {
@@ -28,6 +27,10 @@ export function duplicateValidation(name, orders) {
     }
 
     return nameIsOnOrders;
+}
+
+export function passwordValidation (password) {
+    return Boolean(password.length > 6)
 }
 
 

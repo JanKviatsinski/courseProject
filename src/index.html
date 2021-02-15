@@ -66,7 +66,7 @@
                 <button class="greeting__bottom-btn--close btn--close"></button>
             </div>
 
-            <form id="registration-form" name="registration-form">
+            <form id="registration-form" name="registration-form" novalidate>
                 <label for="registration-form__email"></label>
                 <input type="email"
                        id="registration-form__email"
@@ -77,6 +77,7 @@
                        id="registration-form__password"
                        placeholder="Password">
 
+                <label for="registration-form__user-name"></label>
                 <input class="registration-form__user-name"
                        id="registration-form__user-name"
                        name="name"
@@ -156,13 +157,6 @@
             </div>
         </form>
     </div>
-
-    <div class="order-form__modal">
-        <p class="order-form__modal-paragraph">
-        </p>
-
-        <button class="order-form__btn--close-modal btn--close"></button>
-    </div>
 </main>
 
 <footer class="footer">
@@ -194,6 +188,13 @@
         <legend></legend>
     </fieldset>
 </template>
+
+<div class="modal">
+    <p class="modal__paragraph">
+    </p>
+
+    <button class="modal__btn--close-modal btn--close"></button>
+</div>
 
 <script type="module" src="js/index.js"></script>
 </body>

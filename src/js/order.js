@@ -4,18 +4,17 @@ import {saveOrder, getUserOrders, authentication, registration} from './services
 import {createDataTable} from './modal.js';
 import {getFromStorage, addDataToStorage} from './storage.js';
 
-export const modalOrderForm = document.querySelector('.order-form__modal');
-const paragraphModalOrder = modalOrderForm.querySelector('.order-form__modal-paragraph');
-const orderForm = document.querySelector('#order-form');
+const modalOrderForm = document.querySelector('.modal');
+const paragraphModalOrder = modalOrderForm.querySelector('.modal__paragraph');
+export const orderForm = document.querySelector('#order-form');
 let order = getFromStorage();
 
 const tableModalOrder = document.createElement('table');
 const userName = orderForm.querySelector('.order-form__user-name');
-const btnCloseModalOrder = document.querySelector('.order-form__btn--close-modal');
+const btnCloseModalOrder = document.querySelector('.modal__btn--close-modal');
 const requestSuccessMessage = 'Отлично! Заказ принят.';
 const requestErrorMessage = 'Упс, что-то пошло не так. Сообщите пожалуйста об этом по номеру телефона или' +
     ' напишите мне в телеграм.';
-const messageNameNotSelected = 'Нужно обязательно ввести имя.';
 const messageNoProductsSelected = 'Вы не выбрали ни одного продукта';
 const messageDuplicateName = 'Заказ с таким именем уже есть. Используйте пожалуста' +
     ' другое имя.';
@@ -45,41 +44,41 @@ orderForm.addEventListener('submit', async (evt) => {
         localId = resultAuth.localId;
         console.log(localId)
 
-        if (idToken === undefined) {
-            showModal({
-                displayableObj: modalOrderForm,
-                message: messageRegistrationQuestion,
-                locationMessage: paragraphModalOrder
-            });
-            modalOrderForm.append(createDialogueButtons({
-                wrapClassName: 'registration-dialog',
-                buttons: {
-                    cancel: 'registration-dialog__button--cancel',
-                    ok: 'registration-dialog__button--OK'
-                },
-            }))
-
-
-            return;
-            console.log('содаем нового');
-            const responseRegistration = await registration(userEmail, userPassword);
-            const resultRegistration = await responseRegistration.json();
-            idToken = resultRegistration.idToken;
-            localId = resultRegistration.localId;
-        } else {
-            const responseSaveOrder = await saveOrder(localId, {
-                email: userEmail,
-                id: localId,
-                index: 2,
-            })
-            const resultSaveOrder = await responseSaveOrder.json();
-            console.log('рзультат', resultSaveOrder)
-
-            // const responseUserOrders = await getUserOrders(localId, idToken);
-            // const resultUserOrders = await responseUserOrders.json();
-            //
-            // console.log(resultUserOrders);
-        }
+        // if (idToken === undefined) {
+        //     showModal({
+        //         displayableObj: modalOrderForm,
+        //         message: messageRegistrationQuestion,
+        //         locationMessage: paragraphModalOrder
+        //     });
+        //     modalOrderForm.append(createDialogueButtons({
+        //         wrapClassName: 'registration-dialog',
+        //         buttons: {
+        //             cancel: 'registration-dialog__button--cancel',
+        //             ok: 'registration-dialog__button--OK'
+        //         },
+        //     }))
+        //
+        //
+        //     return;
+        //     console.log('содаем нового');
+        //     const responseRegistration = await registration(userEmail, userPassword);
+        //     const resultRegistration = await responseRegistration.json();
+        //     idToken = resultRegistration.idToken;
+        //     localId = resultRegistration.localId;
+        // } else {
+        //     const responseSaveOrder = await saveOrder(localId, {
+        //         email: userEmail,
+        //         id: localId,
+        //         index: 2,
+        //     })
+        //     const resultSaveOrder = await responseSaveOrder.json();
+        //     console.log('рзультат', resultSaveOrder)
+        //
+        //     // const responseUserOrders = await getUserOrders(localId, idToken);
+        //     // const resultUserOrders = await responseUserOrders.json();
+        //     //
+        //     // console.log(resultUserOrders);
+        // }
 
         return;
 
