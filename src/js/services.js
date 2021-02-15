@@ -3,10 +3,10 @@ const URL_ORDER_GET = 'https://course-project-kviatsinski-default-rtdb.firebasei
 const URL_ORDER_POST = 'https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders.json';
 const apiKey = 'AIzaSyD_MiDZhDFSmUZgvSUqSffavdsjWxwixbo';
 
-export async function saveOrder(data) {
-    let [, , localId] = collectUserData();
+export function saveOrder(data) {
+    let {localId} = collectUserData();
 
-    return await fetch(`https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders/${localId}.json`, {
+    return fetch(`https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders/${localId}.json`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -15,16 +15,16 @@ export async function saveOrder(data) {
     });
 }
 
-export async function getUserOrders() {
-    let [, , localId, idToken] = collectUserData();
+export function getUserOrders() {
+    let {localId, idToken} = collectUserData();
 
-    return await fetch(`https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders/${localId}.json?auth=${idToken}`, {
+    return fetch(`https://course-project-kviatsinski-default-rtdb.firebaseio.com/orders/${localId}.json?auth=${idToken}`, {
         method: 'GET',
     });
 }
 
-export async function authentication (email, password){
-    return await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
+export function authentication (email, password){
+    return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -37,8 +37,8 @@ export async function authentication (email, password){
     })
 }
 
-export async function registration (email, password, name){
-    return await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
+export function registration (email, password, name){
+    return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'

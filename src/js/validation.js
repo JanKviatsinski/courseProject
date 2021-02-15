@@ -17,18 +17,6 @@ export function nameValidation(name) {
     return Boolean(name !== undefined && name.trim());
 }
 
-export function duplicateValidation(name, orders) {
-    let nameIsOnOrders = false;
-
-    for (let order in orders) {
-        if (orders[order].name === name) {
-            nameIsOnOrders = true;
-        }
-    }
-
-    return nameIsOnOrders;
-}
-
 export function passwordValidation (password) {
     return Boolean(password.length >= 6)
 }
