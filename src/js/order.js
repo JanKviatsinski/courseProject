@@ -1,100 +1,66 @@
 import {showModal, createDialogueButtons} from './modal.js';
-import {productsValidation, nameValidation, duplicateValidation,} from './validation.js';
+import {productsValidation, duplicateValidation, nameValidation} from './validation.js';
 import {saveOrder, getUserOrders, authentication, registration} from './services.js';
 import {createDataTable} from './modal.js';
-import {getFromStorage, addDataToStorage} from './storage.js';
+import {getFromStorage, addDataToStorage, ORDER_KEY, completeForm} from './storage.js';
+import {collectUserData} from './identification.js';
 
-const modalOrderForm = document.querySelector('.modal');
-const paragraphModalOrder = modalOrderForm.querySelector('.modal__paragraph');
 export const orderForm = document.querySelector('#order-form');
-let order = getFromStorage();
-
 const tableModalOrder = document.createElement('table');
-const userName = orderForm.querySelector('.order-form__user-name');
-const btnCloseModalOrder = document.querySelector('.modal__btn--close-modal');
+const MESSAGE_NO_REGISTRATION = 'Пройдите пожалуйста регистрацию, это нужно для просмотра своих' +
+    ' заказов';
 const requestSuccessMessage = 'Отлично! Заказ принят.';
 const requestErrorMessage = 'Упс, что-то пошло не так. Сообщите пожалуйста об этом по номеру телефона или' +
     ' напишите мне в телеграм.';
 const messageNoProductsSelected = 'Вы не выбрали ни одного продукта';
 const messageDuplicateName = 'Заказ с таким именем уже есть. Используйте пожалуста' +
     ' другое имя.';
-const messageRegistrationQuestion = 'Зарегестрируемся?';
+let order = getFromStorage(ORDER_KEY);
 
+completeForm(orderForm, ORDER_KEY);
 
-completeForm(orderForm);
-
-// orderForm.addEventListener('change', (evt) => {
-//     const {name, value} = evt.target;
-//
-//     order[name] = value;
-// })
+orderForm.addEventListener('change', (evt) => {
+    const {name, value} = evt.target;
+    order[name] = value;
+})
 
 orderForm.addEventListener('submit', async (evt) => {
         evt.preventDefault();
-        const userEmail = orderForm.querySelector('#order-form__email').value;
-        const userPassword = orderForm.querySelector('#order-form__password').value;
-        console.log(userEmail)
-        console.log(userPassword)
-        let idToken;
-        let localId;
+        let [userName, userEmail] = collectUserData();
 
-        const responseAuth = await authentication(userEmail, userPassword);
-        const resultAuth = await responseAuth.json();
-        idToken = resultAuth.idToken;
-        localId = resultAuth.localId;
-        console.log(localId)
+        const userRegistered = nameValidation(userName);
 
-        // if (idToken === undefined) {
-        //     showModal({
-        //         displayableObj: modalOrderForm,
-        //         message: messageRegistrationQuestion,
-        //         locationMessage: paragraphModalOrder
-        //     });
-        //     modalOrderForm.append(createDialogueButtons({
-        //         wrapClassName: 'registration-dialog',
-        //         buttons: {
-        //             cancel: 'registration-dialog__button--cancel',
-        //             ok: 'registration-dialog__button--OK'
-        //         },
-        //     }))
-        //
-        //
-        //     return;
-        //     console.log('содаем нового');
-        //     const responseRegistration = await registration(userEmail, userPassword);
-        //     const resultRegistration = await responseRegistration.json();
-        //     idToken = resultRegistration.idToken;
-        //     localId = resultRegistration.localId;
-        // } else {
-        //     const responseSaveOrder = await saveOrder(localId, {
-        //         email: userEmail,
-        //         id: localId,
-        //         index: 2,
-        //     })
-        //     const resultSaveOrder = await responseSaveOrder.json();
-        //     console.log('рзультат', resultSaveOrder)
-        //
-        //     // const responseUserOrders = await getUserOrders(localId, idToken);
-        //     // const resultUserOrders = await responseUserOrders.json();
-        //     //
-        //     // console.log(resultUserOrders);
-        // }
+        if (!userRegistered) {
+            showModal(MESSAGE_NO_REGISTRATION)
+            return;
+        }
+
+        const productsIsChecked = productsValidation(orderForm);
+
+        if (!productsIsChecked) {
+            showModal(messageNoProductsSelected);
+            return;
+        }
+
+        order.name = userName;
+        order.email = userEmail;
+
+        const responseSaveOrder = await saveOrder(order)
+        const resultSaveOrder = await responseSaveOrder.json();
+        console.log('рзультат', resultSaveOrder)
+
+        const responseUserOrders = await getUserOrders();
+        const resultUserOrders = await responseUserOrders.json();
+
+        console.log(resultUserOrders);
+
 
         return;
 
 
 //////-------------------------------//////////////////////////////
         // const nameIsChecked = nameValidation(order);
-        const productsIsChecked = productsValidation(orderForm);
 
-        if (!productsIsChecked) {
-            showModal({
-                displayableObj: modalOrderForm,
-                message: messageNoProductsSelected,
-                locationMessage: paragraphModalOrder
-            });
-            return;
-        }
 
         // if (!nameIsChecked) {
         //     showModal({
@@ -160,52 +126,13 @@ orderForm.addEventListener('submit', async (evt) => {
     }
 )
 
-function completeForm(form) {
-    if (!localStorage.order) {
-        return;
-    }
-
-    const orderFromStorage = JSON.parse(localStorage.order);
-    const inputs = form.querySelectorAll('input');
-    const allTextarea = form.querySelectorAll('textarea')
-
-    for (let input of inputs) {
-        if (input.value === orderFromStorage[input.name]) {
-            input.checked = 'checked';
-        }
-
-        if (orderFromStorage.name && input.name === 'name') {
-            input.value = orderFromStorage.name;
-        }
-    }
-
-    for (let textarea of allTextarea) {
-        if (orderFromStorage[textarea.name]) {
-            textarea.value = orderFromStorage[textarea.name];
-        }
-    }
-}
-
 orderForm.addEventListener('reset', () => {
     order = {};
 })
 
-btnCloseModalOrder.addEventListener('click', () => {
-    modalOrderForm.style.display = 'none';
-})
-
-document.addEventListener('click', (evt) => {
-    const clickObj = evt.target;
-
-    if (modalOrderForm.compareDocumentPosition(clickObj) === 2) {
-        modalOrderForm.style.display = 'none';
-        tableModalOrder.remove();
-    }
-})
-
 window.addEventListener('unload', (evt) => {
     evt.preventDefault();
-    addDataToStorage('order', JSON.stringify(order));
+    addDataToStorage(ORDER_KEY, JSON.stringify(order));
 })
 
 

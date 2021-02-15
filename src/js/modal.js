@@ -1,5 +1,7 @@
 const modal = document.querySelector('.modal');
 const modalParagraph = modal.querySelector('.modal__paragraph');
+const btnCloseModal = document.querySelector('.modal__btn--close-modal');
+const wrapButtons = document.createElement('div');
 
 export function showModal(message) {
     modal.style.display = 'flex';
@@ -21,7 +23,6 @@ export function createDataTable({location, data, table}) {
 }
 
 export function createDialogueButtons (btnOK, btnCancel) {
-    const wrapButtons = document.createElement('div');
     wrapButtons.className = 'modal__dialogue-buttons';
     btnOK.className = 'modal__dialogue-btn--ok';
     btnOK.textContent = 'ok';
@@ -34,4 +35,19 @@ export function createDialogueButtons (btnOK, btnCancel) {
 
 export function hideModal () {
     modal.style.display = 'none';
+    wrapButtons.remove();
 }
+
+btnCloseModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+})
+
+document.addEventListener('click', (evt) => {
+    const clickObj = evt.target;
+
+    if (modal.compareDocumentPosition(clickObj) === 2) {
+        modal.style.display = 'none';
+        // tableModalOrder.remove();
+        wrapButtons.remove();
+    }
+})

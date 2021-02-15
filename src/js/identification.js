@@ -1,6 +1,7 @@
-import {authentication, registration, saveOrder} from './services.js';
+import {authentication, registration, getUserData} from './services.js';
 import {createDialogueButtons, showModal, hideModal} from './modal.js';
-import {nameValidation, passwordValidation} from './validation.js';
+import {nameValidation, passwordValidation, emailValidation} from './validation.js';
+import {addDataToStorage, completeForm, getFromStorage} from './storage.js';
 
 const FormIdentification = document.querySelector('#registration-form');
 const identificationBtnSubmit = FormIdentification.querySelector('.registration-form__btn--submit');
@@ -8,17 +9,26 @@ const identificationBtnReset = FormIdentification.querySelector('.registration-f
 const MESSAGE_NAME_NOT_SELECTED = 'Нужно обязательно ввести имя.';
 const MESSAGE_REGISTRATION_QUESTION = 'Зарегестрируемся?';
 const MESSAGE_REGISTRATION_SUCCESSFUL = 'Добро пожаловать';
-const MESSAGE_PASSWORD_NOT_VALID = 'Пароль должен быть не короче шести символов.'
+const MESSAGE_PASSWORD_NOT_VALID = 'Пароль не должен быть короче шести символов.';
+const MESSAGE_EMAIL_NOT_VALID = 'Что-то не так с вашим Email.'
+const USER_DATA_KEY = 'userData';
 let userEmail;
 let userPassword;
 let userName;
 let idToken;
 let localId;
+let userData = getFromStorage(USER_DATA_KEY);
 
+completeForm(FormIdentification, USER_DATA_KEY);
 
-for (let x of ' @ '){
-    console.log(x === '@')
-}
+FormIdentification.addEventListener('change', (evt) => {
+    const {name, value, type} = evt.target;
+    userData[name] = value;
+
+    // if (type !== 'password'){
+    //     userData[name] = value;
+    // }
+})
 
 FormIdentification.addEventListener('submit', async (evt) => {
     evt.preventDefault();
@@ -40,15 +50,17 @@ FormIdentification.addEventListener('submit', async (evt) => {
     }
 
     userEmail = FormIdentification.querySelector('#registration-form__email').value;
+    const emailIsValid = emailValidation(userEmail);
 
-    console.log(userEmail);
-    console.log(userPassword)
+    if (!emailIsValid) {
+        showModal(MESSAGE_EMAIL_NOT_VALID);
+        return;
+    }
 
     const responseAuth = await authentication(userEmail, userPassword);
     const resultAuth = await responseAuth.json();
     idToken = resultAuth.idToken;
     localId = resultAuth.localId;
-    console.log(localId);
 
     if (idToken === undefined) {
         showModal(MESSAGE_REGISTRATION_QUESTION);
@@ -61,7 +73,7 @@ FormIdentification.addEventListener('submit', async (evt) => {
             console.log('содаем нового');
             hideModal();
 
-            const responseRegistration = await registration(userEmail, userPassword);
+            const responseRegistration = await registration(userEmail, userPassword, userName);
             const resultRegistration = await responseRegistration.json();
             idToken = resultRegistration.idToken;
             localId = resultRegistration.localId;
@@ -71,20 +83,16 @@ FormIdentification.addEventListener('submit', async (evt) => {
             }
         })
         return;
+    } else {
+        showModal(MESSAGE_REGISTRATION_SUCCESSFUL);
+    }
+})
 
-    } /*else {
-        const responseSaveOrder = await saveOrder(localId, {
-            email: userEmail,
-            id: localId,
-            index: 2,
-        })
-        const resultSaveOrder = await responseSaveOrder.json();
-        console.log('рзультат', resultSaveOrder);*/
+export function collectUserData() {
+    return [userName, userEmail, localId, idToken];
+}
 
-        // const responseUserOrders = await getUserOrders(localId, idToken);
-        // const resultUserOrders = await responseUserOrders.json();
-        //
-        // console.log(resultUserOrders);
-    // }
-    // return;
+window.addEventListener('unload', (evt) => {
+    evt.preventDefault();
+    addDataToStorage(USER_DATA_KEY, JSON.stringify(userData));
 })
