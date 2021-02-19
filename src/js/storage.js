@@ -19,7 +19,7 @@ export function completeForm(form, key) {
         if (input.value === dataFromStorage[input.name]) {
             input.checked = 'checked';
         }
-
+//переписывает value для чекбоксов в форме закааза, нужно исправить
         if (dataFromStorage[input.name]) {
             input.value = dataFromStorage[input.name];
         }
