@@ -6,26 +6,24 @@ const gulpClean = require('gulp-clean');
 const browserSync = require('browser-sync').create();
 const imageminImg = require('gulp-imagemin');
 
-
-
 function serve() {
     browserSync.init({
-        server: 'build',
+        server: 'docs',
         watch: true,
         notify: false
     });
 }
 
 function clean() {
-    return src('build', {read: false, allowEmpty: true}).pipe(gulpClean());
+    return src('docs', {read: false, allowEmpty: true}).pipe(gulpClean());
 }
 
 function copyHTML(_cb) {
-    return src('src/index.html').pipe(dest('build'));
+    return src('src/index.html').pipe(dest('docs'));
 }
 
 function copyJS(_cb) {
-    return src('src/js/*.js').pipe(dest('build/js'));
+    return src('src/js/*.js').pipe(dest('docs/js'));
 }
 
 function transformSCSS() {
@@ -33,13 +31,13 @@ function transformSCSS() {
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCSS())
         .pipe(concat('index.css'))
-        .pipe(dest('build'));
+        .pipe(dest('docs'));
 }
 
 function imagemin () {
     return src('src/img/*')
         .pipe(imageminImg())
-        .pipe(dest('build/img'));
+        .pipe(dest('docs/img'));
 }
 
 function watchTasks() {

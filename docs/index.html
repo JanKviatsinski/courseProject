@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titled</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<div class="main-header-panel">
+    <header class="main-header">
+        <div class="main-header-wrap">
+            <div class="main-header_main-information">
+                <div class="main-header__owner">
+                    <img class="main-header__photo-owner" src="./img/photo-owner.jpg"
+                         alt="photo owner">
+
+                    <p class="main-header__name-owner">
+                        Name Surname
+                    </p>
+
+                    <button class="main-header__btn--greeting"></button>
+                </div>
+
+                <img class="main-header__logo" src="./img/logo.png" alt="logo">
+
+                <address class="main-header__address">
+                    <div class="address__phone-number-wrap">
+                        <img class="address__phone-img" src="./img/img-phone.svg"
+                             alt="img phone">
+
+                        <a href="tel: +375290000000"
+                           class=" main-header__phone-number phone-number">
+                            +375290000000
+                        </a>
+                    </div>
+
+                    <a href="https://t.me/JanKviatsinki" class="main-header__telegram">
+                        <img class="main-header__telegram-img telegram-img"
+                             src="./img/telegram.svg"
+                             alt="telegram">
+                    </a>
+                </address>
+            </div>
+
+            <div class="main-header__greeting-wrap">
+                <button class="greeting__top-btn--close btn--close"></button>
+
+                <p class="main-header__greeting">
+                    Привет, меня зовут Ян. Я фермер. Уже пять лет мы занимаемся молочкой. У нас
+                    свои
+                    коровы,
+                    есть земля, сами заготавливаем коровам корма. Мне нравится то чем я
+                    занимаюсь,
+                    поэтому
+                    получается вкусно и полезно, и это приятно. А еще приятно получать хорошие
+                    отзывы и
+                    благодарности.
+                    На этой страничке вы можете поближе познакомиться с нами и нашими коровками.
+                    По
+                    всем вопросам можно писать в телеграмм. Пока, удачи))
+                </p>
+
+                <button class="greeting__bottom-btn--close btn--close"></button>
+            </div>
+
+            <form id="registration-form" name="registration-form" novalidate>
+                <label for="registration-form__email"></label>
+                <input type="email"
+                       id="registration-form__email"
+                       placeholder="Email"
+                       name="email">
+
+                <label for="registration-form__password"></label>
+                <input type="password"
+                       id="registration-form__password"
+                       placeholder="Password"
+                       name="password">
+
+                <label for="registration-form__user-name"></label>
+                <input class="registration-form__user-name"
+                       id="registration-form__user-name"
+                       name="name"
+                       type="text"
+                       autocomplete="off"
+                       placeholder="Name">
+
+                <div class="registration-form__buttons">
+                    <button class="registration-form__btn--reset"
+                            type="reset">
+                        Отмена
+                    </button>
+
+                    <button class="registration-form__btn--submit"
+                            type="submit">
+                        Ок
+                    </button>
+                </div>
+            </form>
+        </div>
+    </header>
+</div>
+
+<main class="app-main">
+    <div class="app-main-wrap">
+        <header class="app-main__header">
+            <h2 class="app-main__title">
+                Здесь вы можете сделать заказ
+            </h2>
+
+            <p class="app-main__paragraph">
+                Для оформления заказа заполните необходимые поля и
+                нажмите кнопку "Заказать".
+            </p>
+        </header>
+
+        <form id="order-form" name="order-form">
+            <div class="order-form__products">
+            </div>
+
+            <div class="order-form__form-controls">
+
+                <label for="order-form__note"></label>
+                <textarea id="order-form__note"
+                          name="note"
+                          placeholder="Замечания и предложения"></textarea>
+
+                <div class="form-controls__buttons">
+                    <button class="order-form__btn--reset"
+                            type="reset">
+                        Очистить форму
+                    </button>
+
+                    <button class="order-form__btn--submit"
+                            type="submit">
+                        Заказать
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-wrap">
+        <p class="main-header__name-owner">
+            Name Surname
+        </p>
+
+        <address class="footer__address">
+            <a href="tel: +375290000000"
+               class="footer__phone-number phone-number">
+                +375290000000
+            </a>
+
+            <a href="https://t.me/JanKviatsinki" class="footer__telegram">
+                <img class="footer__telegram-img telegram-img" src="./img/telegram.svg"
+                     alt="telegram">
+            </a>
+        </address>
+
+        <p class="footer__author">
+            <time datetime="2021">© 2021 Happy farm</time>
+        </p>
+    </div>
+</footer>
+
+<template id="form-template">
+    <fieldset class="order-form__fieldset">
+        <legend></legend>
+    </fieldset>
+</template>
+
+<div class="modal">
+    <p class="modal__paragraph">
+    </p>
+
+    <button class="modal__btn--close-modal btn--close"></button>
+</div>
+
+<script type="module" src="js/index.js"></script>
+</body>
+</html>
